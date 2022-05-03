@@ -1,0 +1,19 @@
+.button{
+    -fx-background-color: tarnsperent;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 19px;
+    -fx-padding: 10 20 10 20;
+}
+
+.button:hover {
+    -fx-text-fill: #3f0000 ;
+}
+
+
+.button:pressed
+{
+    -fx-text-fill: #f7f7f7;
+}

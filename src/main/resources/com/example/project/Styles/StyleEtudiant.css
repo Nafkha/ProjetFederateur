@@ -1,0 +1,147 @@
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view:focused {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(#DD3333 0%, #3f0000 100%);
+}
+
+.table-view .column-header-background .label {
+    -fx-background-color: transparent;
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 15px;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: linear-gradient(black, #3f0000);
+    -fx-font-size: 15px;
+}
+
+.table-row-cell {
+    -fx-background-color: -fx-table-cell-border-color, #FAF5E4;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:odd {
+    -fx-background-color: -fx-table-cell-border-color, #c3808e;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em; /* 0 */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #DD3333;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button,
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+
+.text-field {
+    -fx-prompt-text-fill: black;
+}
+
+.combo-box{
+    -fx-prompt-text-fill: black;
+    -fx-background-color: transparent;
+    -fx-border-color: #FAF5E4;
+    -fx-border-color: #d6d6d6;
+    border-radius: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgb(204, 204, 204), 5, 0.0 , 0 , 1);
+}
+
+.button {
+    -fx-background-color: #c3c4c4,
+    linear-gradient(#d6d6d6 50%, white 100%),
+    radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230, 230, 230, 0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0, 1, 1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 3, 0.0, 0, 1);
+}
+/*
+.add{
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#006400 0%, #228B22 20%, #3CB371 100%),
+            linear-gradient(#006400, #3CB371),
+            radial-gradient(center 50% 0%, radius 100%, #006400, #3CB371);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 14px;
+}
+*/
+.add:hover{
+    -fx-background-color: #3CB371;
+}
+
+.add:pressed{
+    -fx-background-color: #228B22;
+}
+/*
+.modify{
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#00008B 0%, #0000CD 20%, #6495ED 100%),
+            linear-gradient(#00008B, #6495ED),
+            radial-gradient(center 50% 0%, radius 100%, #00008B, #6495ED);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 14px;
+}
+*/
+.modify:hover{
+    -fx-background-color: #728FCE;
+}
+
+.modify:pressed{
+    -fx-background-color: #4863A0;
+}
+
+/*
+.delete{
+    -fx-background-color:
+            #c3c4c4,
+            linear-gradient(#8B0000 0%, #B22222 20%, #CD5C5C 100%),
+            linear-gradient(#8B0000, #CD5C5C),
+            radial-gradient(center 50% 0%, radius 100%, #8B0000, #CD5C5C);
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 14px;
+}
+*/
+.delete:hover{
+    -fx-background-color: #ff4c4c;
+}
+
+.delete:pressed{
+    -fx-background-color: #ff3232;
+}
