@@ -66,7 +66,7 @@
                         </ImageView>
                </children>
                 </Pane>
-                <TextField layoutX="64.0" layoutY="187.0" prefHeight="45.0" prefWidth="304.0" promptText="Identifiant" stylesheets="@Styles/StyleLogin.css" AnchorPane.bottomAnchor="197.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="187.0">
+                <TextField fx:id="user" layoutX="64.0" layoutY="187.0" prefHeight="45.0" prefWidth="304.0" promptText="Identifiant" stylesheets="@Styles/StyleLogin.css" AnchorPane.bottomAnchor="197.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="187.0">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -88,7 +88,7 @@
                         <Font name="Roboto Condensed" size="17.0" />
                     </font></Button>
                 <Line endX="213.0" layoutX="175.0" layoutY="309.0" startX="-171.0" stroke="WHITE" strokeWidth="2.0" />
-            <PasswordField layoutX="64.0" layoutY="232.0" prefHeight="45.0" prefWidth="304.0" promptText="Mot de passe" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="232.0">
+            <PasswordField fx:id="pass" layoutX="64.0" layoutY="232.0" prefHeight="45.0" prefWidth="304.0" promptText="Mot de passe" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="232.0">
                <font>
                   <Font size="15.0" />
                </font></PasswordField>
