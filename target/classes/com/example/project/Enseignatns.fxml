@@ -140,10 +140,10 @@
       </Pane>
       <Pane layoutX="177.0" prefHeight="707.0" prefWidth="1190.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="studentTable" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
+            <TableView fx:id="tableEnseignant" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
                   <TableColumn fx:id="cin_id" minWidth="0.0" prefWidth="120.0" text="CIN" />
-                  <TableColumn fx:id="numInsc_id" minWidth="0.0" prefWidth="120.0" text="CNSS" />
+                  <TableColumn fx:id="cnss_id" minWidth="0.0" prefWidth="120.0" text="CNSS" />
                   <TableColumn fx:id="nom_id" minWidth="0.0" prefWidth="120.0" text="Nom" />
                   <TableColumn fx:id="prenom_id" minWidth="0.0" prefWidth="120.0" text="Prénom" />
                   <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="75.0" text="Sexe" />
@@ -153,25 +153,25 @@
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="520.0" prefWidth="236.0">
                <children>
-                  <TextField minHeight="40.0" prefHeight="40.0" prefWidth="235.0" promptText="CIN">
+                  <TextField fx:id="cin_ens" minHeight="40.0" prefHeight="40.0" prefWidth="235.0" promptText="CIN">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField minHeight="40.0" prefHeight="40.0" promptText="CNSS">
+                  <TextField fx:id="cnss_ens" minHeight="40.0" prefHeight="40.0" promptText="CNSS">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField minHeight="40.0" prefHeight="40.0" promptText="Nom">
+                  <TextField fx:id="nom_ens" minHeight="40.0" prefHeight="40.0" promptText="Nom">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField minHeight="40.0" prefHeight="40.0" promptText="Prénom">
+                  <TextField fx:id="prenom_ens" minHeight="40.0" prefHeight="40.0" promptText="Prénom">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
                   <HBox minHeight="40.0" prefHeight="40.0" prefWidth="235.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" selected="true" text="Homme">
+                        <RadioButton fx:id="H" mnemonicParsing="false" selected="true" text="Homme">
                            <HBox.margin>
                               <Insets bottom="10.0" left="15.0" right="20.0" top="10.0" />
                            </HBox.margin>
@@ -179,7 +179,7 @@
                               <ToggleGroup fx:id="sexe1" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Femme" toggleGroup="$sexe1">
+                        <RadioButton fx:id="F" mnemonicParsing="false" text="Femme" toggleGroup="$sexe1">
                            <HBox.margin>
                               <Insets bottom="10.0" left="15.0" right="20.0" top="10.0" />
                            </HBox.margin>
@@ -189,18 +189,18 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <TextField minHeight="40.0" prefHeight="40.0" promptText="Age">
+                  <TextField fx:id="age_ens" minHeight="40.0" prefHeight="40.0" promptText="Age">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField minHeight="40.0" prefHeight="40.0" promptText="Mail">
+                  <TextField fx:id="mail_ens" minHeight="40.0" prefHeight="40.0" promptText="Mail">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
                   <HBox prefHeight="84.0" prefWidth="236.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
+                        <Button fx:id="ajouterEnseignant" mnemonicParsing="false" onAction="#ajouter_click" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
                            </HBox.margin>
