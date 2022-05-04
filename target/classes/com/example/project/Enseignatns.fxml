@@ -29,7 +29,7 @@
                         <Insets left="20.0" right="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" stylesheets="@Styles/StyleHome.css" text="Profile" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="150.0" stylesheets="@Styles/StyleHome.css" text="Profile" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -44,7 +44,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="etudiantsbtn" mnemonicParsing="false" onAction="#student_click" prefHeight="81.0" prefWidth="161.0" stylesheets="@Styles/StyleHome.css" text="Etudiants" textFill="WHITE">
+                  <Button fx:id="etudiantsbtn" mnemonicParsing="false" onAction="#student_click" prefHeight="20.0" prefWidth="161.0" stylesheets="@Styles/StyleHome.css" text="Etudiants" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -59,7 +59,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignatns" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignatns" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -74,7 +74,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="matierebtn" mnemonicParsing="false" onAction="#matiere_click" prefHeight="80.0" prefWidth="155.0" stylesheets="@Styles/StyleHome.css" text="Matière" textFill="WHITE">
+                  <Button fx:id="matierebtn" mnemonicParsing="false" onAction="#matiere_click" prefHeight="65.0" prefWidth="157.0" stylesheets="@Styles/StyleHome.css" text="Matières" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -89,7 +89,22 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="148.0" stylesheets="@Styles/StyleHome.css" text="Groupe" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="157.0" stylesheets="@Styles/StyleHome.css" text="Modules" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Serif Regular" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/abc.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="groupebtn" mnemonicParsing="false" onAction="#group_click" prefHeight="65.0" prefWidth="157.0" stylesheets="@Styles/StyleHome.css" text="Groupes" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -104,7 +119,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="notebtn" mnemonicParsing="false" onAction="#note_click" prefHeight="80.0" prefWidth="137.0" stylesheets="@Styles/StyleHome.css" text="Notes" textFill="WHITE">
+                  <Button fx:id="notebtn" mnemonicParsing="false" onAction="#note_click" prefHeight="20.0" prefWidth="137.0" stylesheets="@Styles/StyleHome.css" text="Notes" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -119,10 +134,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="164.0" stylesheets="@Styles/StyleHome.css" text="Absences" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
+                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="164.0" stylesheets="@Styles/StyleHome.css" text="Absences" textFill="WHITE">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -133,6 +145,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </Button>
                </children>
             </VBox>
