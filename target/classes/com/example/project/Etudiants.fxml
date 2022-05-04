@@ -170,7 +170,7 @@
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="582.0" prefWidth="236.0">
                <children>
-                  <TextField fx:id="cin" minHeight="40.0" prefHeight="40.0" prefWidth="235.0" promptText="CIN">
+                  <TextField fx:id="cin_etu" minHeight="40.0" prefHeight="40.0" prefWidth="235.0" promptText="CIN">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
@@ -178,17 +178,17 @@
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="nom" minHeight="40.0" prefHeight="40.0" promptText="Nom">
+                  <TextField fx:id="nom_etu" minHeight="40.0" prefHeight="40.0" promptText="Nom">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="prenom" minHeight="40.0" prefHeight="40.0" promptText="Prénom">
+                  <TextField fx:id="prenom_etu" minHeight="40.0" prefHeight="40.0" promptText="Prénom">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
                   <HBox minHeight="40.0" prefHeight="40.0" prefWidth="235.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" selected="true" text="Homme">
+                        <RadioButton fx:id="H" mnemonicParsing="false" selected="true" text="Homme">
                            <HBox.margin>
                               <Insets bottom="10.0" left="15.0" top="10.0" />
                            </HBox.margin>
@@ -196,7 +196,7 @@
                               <ToggleGroup fx:id="sexe1" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Femme" toggleGroup="$sexe1">
+                        <RadioButton fx:id="F" mnemonicParsing="false" text="Femme" toggleGroup="$sexe1">
                            <HBox.margin>
                               <Insets bottom="10.0" left="15.0" top="10.0" />
                            </HBox.margin>
@@ -206,23 +206,23 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <TextField fx:id="age" minHeight="40.0" prefHeight="40.0" promptText="Age">
+                  <TextField fx:id="age_etu" minHeight="40.0" prefHeight="40.0" promptText="Age">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="email" minHeight="40.0" prefHeight="40.0" promptText="Mail">
+                  <TextField fx:id="mail_etu" minHeight="40.0" prefHeight="40.0" promptText="Mail">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <ComboBox minHeight="40.0" prefWidth="212.0" promptText="Groupe">
+                  <ComboBox fx:id="groupe_etu" minHeight="40.0" prefWidth="212.0" promptText="Groupe">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ComboBox>
                   <HBox prefHeight="22.0" prefWidth="236.0">
                      <children>
-                        <Button fx:id="ajouter" minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
+                        <Button fx:id="ajouter" minHeight="30.0" mnemonicParsing="false" onAction="#ajouter_clik" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />
                            </HBox.margin>

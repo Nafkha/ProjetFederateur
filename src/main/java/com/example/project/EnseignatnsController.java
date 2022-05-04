@@ -83,9 +83,10 @@ public class EnseignatnsController implements Initializable
         try {
             PreparedStatement ajouterPersonne = App.con.prepareStatement("INSERT INTO PERSONNE VALUES(?,?,?,?,?,?)");
             ajouterPersonne.setInt(1,cin);
+            String mail = nom.substring(0,1).toLowerCase()+"."+prenom.replaceAll(" ","").toLowerCase()+"@pi.tn";
             ajouterPersonne.setString(2,nom);
             ajouterPersonne.setString(3,prenom);
-            ajouterPersonne.setString(4,email);
+            ajouterPersonne.setString(4,mail);
             ajouterPersonne.setString(5,sexe);
             ajouterPersonne.setInt(6,age);
             PreparedStatement ajouterEnseignant = App.con.prepareStatement("INSERT INTO ENSEIGNANT VALUES(?,?)");
@@ -93,7 +94,7 @@ public class EnseignatnsController implements Initializable
             ajouterEnseignant.setInt(2,cin);
             ajouterPersonne.execute();
             ajouterEnseignant.execute();
-            list.add(new Enseignant(cin,nom,prenom,sexe,age,email,cnss));
+            list.add(new Enseignant(cin,nom,prenom,sexe,age,mail,cnss));
 
 
         }catch (SQLException e){
