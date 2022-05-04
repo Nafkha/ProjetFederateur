@@ -8,15 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable
+public class GroupeController implements Initializable
 {
     private Stage stage;
     private Scene scene;
@@ -25,24 +23,22 @@ public class HomeController implements Initializable
     @FXML
     private Button etudiantsbtn;
 
-    @FXML
-    private Button enseignatnbtn;
 
     @FXML
-    private Button matierebtn;
+    private Button enseignatnbtn;
 
     @FXML
     private Button notebtn;
 
     @FXML
-    private Button groupebtn;
+    private Button matierebtn;
 
     @FXML
     void student_click(ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("Etudiants.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene =new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
@@ -52,8 +48,19 @@ public class HomeController implements Initializable
     void enseignatn_click(ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("Enseignatns.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene =new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
+    void note_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Notes.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
@@ -70,28 +77,7 @@ public class HomeController implements Initializable
         stage.show();
     }
 
-    @FXML
-    void note_click(ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("Notes.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene =new Scene(root);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
-    }
 
-    @FXML
-    void group_click(ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("Groupes.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)

@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1364.0" stylesheets="@Styles/StyleEtudiant.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.EnseignatnsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1364.0" stylesheets="@Styles/StyleEtudiant.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.GroupeController">
    <children>
       <Pane prefHeight="707.0" prefWidth="180.0" style="-fx-background-color: #DD3333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1184.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -59,7 +59,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignatns" textFill="WHITE">
+                  <Button fx:id="enseignatnbtn" mnemonicParsing="false" onAction="#enseignatn_click" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignatns" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -104,7 +104,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="groupebtn" mnemonicParsing="false" onAction="#group_click" prefHeight="65.0" prefWidth="157.0" stylesheets="@Styles/StyleHome.css" text="Groupes" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="157.0" stylesheets="@Styles/StyleHome.css" text="Groupes" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -155,74 +155,55 @@
       </Pane>
       <Pane layoutX="177.0" prefHeight="707.0" prefWidth="1190.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="tableEnseignant" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
+            <TableView fx:id="studentTable" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
-                  <TableColumn fx:id="cin_id" minWidth="0.0" prefWidth="120.0" text="CIN" />
-                  <TableColumn fx:id="cnss_id" minWidth="0.0" prefWidth="120.0" text="CNSS" />
-                  <TableColumn fx:id="nom_id" minWidth="0.0" prefWidth="120.0" text="Nom" />
-                  <TableColumn fx:id="prenom_id" minWidth="0.0" prefWidth="120.0" text="Prénom" />
-                  <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="75.0" text="Sexe" />
-                  <TableColumn fx:id="age_id" prefWidth="110.0" text="Age" />
-                  <TableColumn fx:id="mail_id" prefWidth="236.0" text="Mail" />
+                  <TableColumn fx:id="cin_id" prefWidth="150.0" text="Code" />
+                  <TableColumn fx:id="numInsc_id" prefWidth="150.0" text="Nom" />
+                  <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="150.0" text="Coefficient" />
+                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="150.0" text="Enseignatns" />
+                  <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="150.0" text="Date début" />
+                  <TableColumn fx:id="age_id" prefWidth="150.0" text="Date fin" />
                </columns>
             </TableView>
-            <VBox layoutX="14.0" layoutY="79.0" prefHeight="520.0" prefWidth="236.0">
+            <VBox layoutX="14.0" layoutY="79.0" prefHeight="490.0" prefWidth="236.0">
                <children>
-                  <TextField fx:id="cin_ens" minHeight="40.0" prefHeight="40.0" prefWidth="235.0" promptText="CIN">
+                  <TextField prefHeight="40.0" prefWidth="216.0" promptText="Code">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="cnss_ens" minHeight="40.0" prefHeight="40.0" promptText="CNSS">
+                  <TextField prefHeight="40.0" prefWidth="212.0" promptText="Numéro d'inscription" text="Nom">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="nom_ens" minHeight="40.0" prefHeight="40.0" promptText="Nom">
+                  <TextField prefHeight="40.0" prefWidth="212.0" promptText="Nom" text="Coefficient">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="prenom_ens" minHeight="40.0" prefHeight="40.0" promptText="Prénom">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextField>
-                  <HBox minHeight="40.0" prefHeight="40.0" prefWidth="235.0">
-                     <children>
-                        <RadioButton fx:id="H" mnemonicParsing="false" selected="true" text="Homme">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="15.0" right="20.0" top="10.0" />
-                           </HBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="sexe1" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="F" mnemonicParsing="false" text="Femme" toggleGroup="$sexe1">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="15.0" right="20.0" top="10.0" />
-                           </HBox.margin>
-                        </RadioButton>
-                     </children>
+                  <ComboBox prefHeight="40.0" prefWidth="212.0" promptText="Enseignatns">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                  </HBox>
-                  <TextField fx:id="age_ens" minHeight="40.0" prefHeight="40.0" promptText="Age">
+                  </ComboBox>
+                  <DatePicker maxWidth="212.0" prefHeight="40.0" prefWidth="212.0" promptText="Date début">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="mail_ens" minHeight="40.0" prefHeight="40.0" promptText="Mail">
+                  </DatePicker>
+                  <DatePicker maxWidth="212.0" prefHeight="40.0" prefWidth="212.0" promptText="Date fin">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextField>
+                     </VBox.margin>
+                  </DatePicker>
                   <HBox prefHeight="84.0" prefWidth="236.0">
                      <children>
-                        <Button fx:id="ajouterEnseignant" mnemonicParsing="false" onAction="#ajouter_click" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
                            <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="35.0" />
                            </HBox.margin>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Modifier">
                            <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="35.0" />
                            </HBox.margin>
                         </Button>
                      </children>
@@ -236,7 +217,7 @@
             </VBox>
             <HBox layoutX="615.0" layoutY="24.0" prefHeight="30.0" prefWidth="395.0">
                <children>
-                  <TextField prefHeight="30.0" prefWidth="457.0" promptText="Rechercher..." />
+                  <TextField prefHeight="30.0" prefWidth="413.0" promptText="Rechercher..." />
                </children>
             </HBox>
          </children></Pane>

@@ -35,6 +35,9 @@ public class EtudiantController implements Initializable
     private Button notebtn;
 
     @FXML
+    private Button groupebtn;
+
+    @FXML
     private TableView<Etudiant> studentTable;
 
     @FXML
@@ -98,6 +101,18 @@ public class EtudiantController implements Initializable
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+    }
+
+    @FXML
+    void group_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Groupes.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+
     }
 
     @Override
