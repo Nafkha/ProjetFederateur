@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -157,43 +156,41 @@
          <children>
             <TableView fx:id="studentTable" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
-                  <TableColumn fx:id="cin_id" prefWidth="150.0" text="Code" />
-                  <TableColumn fx:id="numInsc_id" prefWidth="150.0" text="Nom" />
-                  <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="150.0" text="Coefficient" />
-                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="150.0" text="Enseignatns" />
-                  <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="150.0" text="Date début" />
-                  <TableColumn fx:id="age_id" prefWidth="150.0" text="Date fin" />
+                  <TableColumn fx:id="cin_id" prefWidth="150.0" text="ID" />
+                  <TableColumn fx:id="numInsc_id" prefWidth="150.0" text="Niveau" />
+                  <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="150.0" text="Diplôme" />
+                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="150.0" text="Spécialité" />
+                  <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="150.0" text="Numéro de groupe" />
                </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="490.0" prefWidth="236.0">
                <children>
-                  <TextField prefHeight="40.0" prefWidth="216.0" promptText="Code">
+                  <TextField prefHeight="40.0" prefWidth="216.0" promptText="Code" text="ID">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin></TextField>
-                  <TextField prefHeight="40.0" prefWidth="212.0" promptText="Numéro d'inscription" text="Nom">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextField>
-                  <TextField prefHeight="40.0" prefWidth="212.0" promptText="Nom" text="Coefficient">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextField>
-                  <ComboBox prefHeight="40.0" prefWidth="212.0" promptText="Enseignatns">
+                  <ComboBox prefHeight="40.0" prefWidth="212.0" promptText="Niveau">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <DatePicker maxWidth="212.0" prefHeight="40.0" prefWidth="212.0" promptText="Date début">
+                  <ComboBox prefHeight="40.0" prefWidth="212.0" promptText="Diplôme">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                  </DatePicker>
-                  <DatePicker maxWidth="212.0" prefHeight="40.0" prefWidth="212.0" promptText="Date fin">
+                  </ComboBox>
+                  <ComboBox prefHeight="40.0" prefWidth="212.0" promptText="Spécialité">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                  </DatePicker>
+                  </ComboBox>
+                  <TextField prefHeight="40.0" prefWidth="212.0" promptText="Numéro d'inscription" text="Numéro de groupe">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin></TextField>
                   <HBox prefHeight="84.0" prefWidth="236.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
