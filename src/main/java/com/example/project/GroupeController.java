@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -64,12 +65,24 @@ public class GroupeController implements Initializable
     void ajouter_grp(ActionEvent event) throws IOException{
 
         String idGrp,diplomeGrp,specialiteGrp,niveauGrp;
-        int numGrp;
-        idGrp = idgrp.getText();
+        int numGrp=0;
+
         diplomeGrp = diplomegrp.getValue().toString();
         specialiteGrp = specialitegrp.getValue().toString();
         niveauGrp = niveaugrp.getValue().toString();
-        numGrp = Integer.parseInt(numgrp.getText());
+        idGrp = diplomeGrp.substring(0,1)+specialiteGrp.substring(0,1)+niveauGrp;
+        try {
+            PreparedStatement pstmt = App.con.prepareStatement("SELECT COUNT(*) FROM GROUPE WHERE(idGrp = ?)");
+            pstmt.setString(1,idGrp);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                numGrp = rs.getInt(1)+1;
+            }
+
+        }catch (SQLException e){
+
+        }
+
         try{
             PreparedStatement pstmt = App.con.prepareStatement("INSERT INTO GROUPE VALUES(?,?,?,?,?)");
             pstmt.setString(1,idGrp);
