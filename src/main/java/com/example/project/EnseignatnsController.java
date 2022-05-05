@@ -83,7 +83,7 @@ public class EnseignatnsController implements Initializable
         try {
             PreparedStatement ajouterPersonne = App.con.prepareStatement("INSERT INTO PERSONNE VALUES(?,?,?,?,?,?)");
             ajouterPersonne.setInt(1,cin);
-            String mail = nom.substring(0,1).toLowerCase()+"."+prenom.replaceAll(" ","").toLowerCase()+"@pi.tn";
+            String mail = prenom.substring(0,1).toLowerCase()+"."+nom.replaceAll(" ","").toLowerCase()+"@pi.tn";
             ajouterPersonne.setString(2,nom);
             ajouterPersonne.setString(3,prenom);
             ajouterPersonne.setString(4,mail);
