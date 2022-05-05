@@ -58,7 +58,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="enseignatnbtn" mnemonicParsing="false" onAction="#enseignatn_click" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignatns" textFill="WHITE">
+                  <Button fx:id="enseignatnbtn" mnemonicParsing="false" onAction="#enseignatn_click" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignants" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -168,15 +168,6 @@
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="490.0" prefWidth="236.0">
                <children>
-                  <TextField fx:id="idgrp" prefHeight="40.0" prefWidth="216.0" promptText="Code" text="ID">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextField>
-                  <ComboBox fx:id="niveaugrp" prefHeight="40.0" prefWidth="212.0" promptText="Niveau">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </ComboBox>
                   <ComboBox fx:id="diplomegrp" onAction="#onChange" prefHeight="40.0" prefWidth="212.0" promptText="Diplôme">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -187,10 +178,11 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <TextField fx:id="numgrp" prefHeight="40.0" prefWidth="212.0" promptText="Numéro d'inscription" text="Numéro de groupe">
+                  <ComboBox fx:id="niveaugrp" prefHeight="40.0" prefWidth="212.0" promptText="Niveau">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextField>
+                     </VBox.margin>
+                  </ComboBox>
                   <HBox prefHeight="84.0" prefWidth="236.0">
                      <children>
                         <Button fx:id="ajoutergrp" mnemonicParsing="false" onAction="#ajouter_grp" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
