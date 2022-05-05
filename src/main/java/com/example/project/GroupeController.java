@@ -116,7 +116,7 @@ public class GroupeController implements Initializable
     @FXML
     void enseignatn_click(ActionEvent event) throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("Enseignatns.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Enseignants.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
