@@ -52,7 +52,14 @@ public class EtudiantController implements Initializable
     private Button notebtn;
 
     @FXML
+    private Button modulebtn;
+
+    @FXML
     private Button groupebtn;
+
+    @FXML
+    private Button absencebtn;
+
     @FXML
     private Button ajouter;
 
@@ -164,9 +171,9 @@ public class EtudiantController implements Initializable
     }
 
     @FXML
-    void note_click(ActionEvent event) throws IOException
+    void module_click(ActionEvent event) throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("Notes.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Modules.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -183,7 +190,28 @@ public class EtudiantController implements Initializable
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+    }
 
+    @FXML
+    void note_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Notes.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
+    void absence_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Absences.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene =new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
     }
 
     @Override
