@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MatiereController implements Initializable
+public class ModuleController implements Initializable
 {
     private Stage stage;
     private Scene scene;
@@ -30,10 +30,10 @@ public class MatiereController implements Initializable
     private Button notebtn;
 
     @FXML
-    private Button modulebtn;
+    private Button groupebtn;
 
     @FXML
-    private Button groupebtn;
+    private Button matierebtn;
 
     @FXML
     private Button absencebtn;
@@ -61,9 +61,9 @@ public class MatiereController implements Initializable
     }
 
     @FXML
-    void module_click(ActionEvent event) throws IOException
+    void matiere_click(ActionEvent event) throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("Modules.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Matieres.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -80,6 +80,7 @@ public class MatiereController implements Initializable
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+
     }
 
     @FXML
@@ -109,5 +110,4 @@ public class MatiereController implements Initializable
     {
 
     }
-
 }

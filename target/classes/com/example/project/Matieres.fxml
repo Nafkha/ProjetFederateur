@@ -59,7 +59,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="enseignatnbtn" mnemonicParsing="false" onAction="#enseignatn_click" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignatns" textFill="WHITE">
+                  <Button fx:id="enseignatnbtn" mnemonicParsing="false" onAction="#enseignatn_click" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignants" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -89,7 +89,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="157.0" stylesheets="@Styles/StyleHome.css" text="Modules" textFill="WHITE">
+                  <Button fx:id="modulebtn" mnemonicParsing="false" onAction="#module_click" prefHeight="65.0" prefWidth="157.0" stylesheets="@Styles/StyleHome.css" text="Modules" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -134,7 +134,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="164.0" stylesheets="@Styles/StyleHome.css" text="Absences" textFill="WHITE">
+                  <Button fx:id="absencebtn" mnemonicParsing="false" onAction="#absence_click" prefHeight="20.0" prefWidth="164.0" stylesheets="@Styles/StyleHome.css" text="Absences" textFill="WHITE">
                      <font>
                         <Font name="Serif Regular" size="18.0" />
                      </font>
@@ -160,17 +160,13 @@
                   <TableColumn fx:id="cin_id" prefWidth="150.0" text="Code" />
                   <TableColumn fx:id="numInsc_id" prefWidth="150.0" text="Nom" />
                   <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="150.0" text="Coefficient" />
-                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="150.0" text="Enseignatns" />
+                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="150.0" text="Enseignant" />
                   <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="150.0" text="Date début" />
                   <TableColumn fx:id="age_id" prefWidth="150.0" text="Date fin" />
                </columns>
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="490.0" prefWidth="236.0">
                <children>
-                  <TextField prefHeight="40.0" prefWidth="216.0" promptText="Code">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextField>
                   <TextField prefHeight="40.0" prefWidth="212.0" promptText="Numéro d'inscription" text="Nom">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -37,7 +37,6 @@ public class GroupeController implements Initializable
     @FXML
     private Button etudiantsbtn;
 
-
     @FXML
     private Button enseignatnbtn;
 
@@ -46,6 +45,12 @@ public class GroupeController implements Initializable
 
     @FXML
     private Button matierebtn;
+
+    @FXML
+    private Button modulebtn;
+
+    @FXML
+    private Button absencebtn;
 
     @FXML
     private ObservableList<String> specialite = FXCollections.observableArrayList(
@@ -125,6 +130,28 @@ public class GroupeController implements Initializable
     }
 
     @FXML
+    void matiere_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Matieres.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
+    void module_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Modules.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
     void note_click(ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("Notes.fxml"));
@@ -136,11 +163,11 @@ public class GroupeController implements Initializable
     }
 
     @FXML
-    void matiere_click(ActionEvent event) throws IOException
+    void absence_click(ActionEvent event) throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("Matieres.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        root = FXMLLoader.load(getClass().getResource("Absences.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene =new Scene(root);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

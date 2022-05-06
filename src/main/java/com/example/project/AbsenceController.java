@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MatiereController implements Initializable
+public class AbsenceController implements Initializable
 {
     private Stage stage;
     private Scene scene;
@@ -36,9 +36,6 @@ public class MatiereController implements Initializable
     private Button groupebtn;
 
     @FXML
-    private Button absencebtn;
-
-    @FXML
     void student_click(ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("Etudiants.fxml"));
@@ -55,6 +52,17 @@ public class MatiereController implements Initializable
         root = FXMLLoader.load(getClass().getResource("Enseignants.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
+    void matiere_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Matieres.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene =new Scene(root);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
@@ -88,17 +96,6 @@ public class MatiereController implements Initializable
         root = FXMLLoader.load(getClass().getResource("Notes.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
-    }
-
-    @FXML
-    void absence_click(ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("Absences.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene =new Scene(root);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
