@@ -43,6 +43,8 @@ public class EtudiantController implements Initializable
 
     @FXML
     private TextField age_etu;
+    @FXML
+    private DatePicker date_naissence;
 
     @FXML
     private ComboBox groupe_etu;
@@ -95,14 +97,14 @@ public class EtudiantController implements Initializable
     private TableColumn<Etudiant, String> sexe_id;
 
     @FXML
-    private TableColumn<Etudiant, Integer> age_id;
+    private TableColumn<Etudiant, String> age_id;
 
     @FXML
     private TableColumn<Etudiant, String> mail_id;
 
     ObservableList<Etudiant> list = FXCollections.observableArrayList(
-        new Etudiant(13021155,"Mohamed", "Bennour", "H", 22,"m.bennour21232@pi.tn", 21232),
-        new Etudiant(12345678,"Mohamed", "Youssef Nafkha", "H", 23,"m.nafkha32524@pi.tn", 32524)
+        new Etudiant(13021155,"Mohamed", "Bennour", "H", "","m.bennour21232@pi.tn", 21232),
+        new Etudiant(12345678,"Mohamed", "Youssef Nafkha", "H", "23","m.nafkha32524@pi.tn", 32524)
     );
     @FXML
     void ajouter_clik(ActionEvent event) throws IOException{
@@ -136,13 +138,15 @@ public class EtudiantController implements Initializable
             }else{
                 sexe = "F";
             }
+            String date_n = date_naissence.getValue().toString();
+            System.out.println(date_n);
             String mail = prenom_etu.getText().substring(0,1).toLowerCase(Locale.ROOT)+"."+nom_etu.getText().replaceAll(" ","").toLowerCase(Locale.ROOT)+num_insc+"@pi.tn";
             ajouterPersonne.setInt(1,Integer.parseInt(cin_etu.getText()));
             ajouterPersonne.setString(2,nom_etu.getText());
             ajouterPersonne.setString(3,prenom_etu.getText());
             ajouterPersonne.setString(4,mail);
             ajouterPersonne.setString(5,sexe);
-            ajouterPersonne.setInt(6,Integer.parseInt(age_etu.getText()));
+            ajouterPersonne.setString(6,date_n);
             ajouterPersonne.execute();
             PreparedStatement ajouterEtudiant = App.con.prepareStatement("INSERT INTO ETUDIANT VALUES(?,?,?,?)");
             ajouterEtudiant.setInt(2,Integer.parseInt(cin_etu.getText()));
@@ -268,7 +272,7 @@ public class EtudiantController implements Initializable
         nom_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("nom"));
         prenom_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("prenom"));
         sexe_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("sexe"));
-        age_id.setCellValueFactory(new PropertyValueFactory<Etudiant, Integer>("age"));
+        age_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("date_naissence"));
         mail_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("mail"));
 
         try{

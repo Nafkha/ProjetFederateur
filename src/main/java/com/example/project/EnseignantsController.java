@@ -30,7 +30,9 @@ public class EnseignantsController implements Initializable
     private Parent root;
 
     @FXML
-    private TextField cin_ens,cnss_ens,nom_ens,prenom_ens,age_ens,mail_ens;
+    private TextField cin_ens,cnss_ens,nom_ens,prenom_ens;
+    @FXML
+    private DatePicker date_naissance;
 
     @FXML
     private TextField recherche;
@@ -57,7 +59,7 @@ public class EnseignantsController implements Initializable
     private TableColumn<Enseignant, String> sexe_id;
 
     @FXML
-    private TableColumn<Enseignant, Integer> age_id;
+    private TableColumn<Enseignant, String> age_id;
 
     @FXML
     private TableColumn<Enseignant, String> mail_id;
@@ -87,14 +89,13 @@ public class EnseignantsController implements Initializable
 
     @FXML
     void ajouter_click(ActionEvent event){
-        int cin,age,cnss;
-        String nom,prenom,email,sexe;
+        int cin,cnss;
+        String nom,prenom,sexe,date_n;
         cin = Integer.parseInt(cin_ens.getText());
-        age = Integer.parseInt(age_ens.getText());
+        date_n = date_naissance.getValue().toString();
         cnss = Integer.parseInt(cnss_ens.getText());
         nom = nom_ens.getText();
         prenom =prenom_ens.getText();
-        email = mail_ens.getText();
         if(H.isSelected()){
             sexe = "H";
         }else{
@@ -108,13 +109,13 @@ public class EnseignantsController implements Initializable
             ajouterPersonne.setString(3,prenom);
             ajouterPersonne.setString(4,mail);
             ajouterPersonne.setString(5,sexe);
-            ajouterPersonne.setInt(6,age);
+            ajouterPersonne.setString(6,date_n);
             PreparedStatement ajouterEnseignant = App.con.prepareStatement("INSERT INTO ENSEIGNANT VALUES(?,?)");
             ajouterEnseignant.setInt(1,cnss);
             ajouterEnseignant.setInt(2,cin);
             ajouterPersonne.execute();
             ajouterEnseignant.execute();
-            list.add(new Enseignant(cin,nom,prenom,sexe,age,mail,cnss));
+            list.add(new Enseignant(cin,nom,prenom,sexe,date_n,mail,cnss));
 
 
         }catch (SQLException e){
@@ -233,18 +234,19 @@ public class EnseignantsController implements Initializable
         nom_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("nom"));
         prenom_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("prenom"));
         sexe_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("sexe"));
-        age_id.setCellValueFactory(new PropertyValueFactory<Enseignant, Integer>("age"));
+        age_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("date_naissence"));
         mail_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("mail"));
         try {
             Statement stmt = App.con.createStatement();
-            ResultSet rs = stmt.executeQuery("select personne.id, personne.nom, personne.prenom, personne.sexe,  personne.age, personne.mail,  enseignant.cnss from personne join enseignant on (personne.id = enseignant.id)");
+            ResultSet rs = stmt.executeQuery("select personne.id, personne.nom, personne.prenom, personne.sexe,  personne.date_naissence, personne.mail,  enseignant.cnss from personne join enseignant on (personne.id = enseignant.id)");
             while(rs.next()){
-                list.add(new Enseignant(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6),rs.getInt(7)));
+                list.add(new Enseignant(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         tableEnseignant.setItems(list);
+        System.out.println(list.toString());
 
 
     }

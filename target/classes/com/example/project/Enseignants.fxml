@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1364.0" stylesheets="@Styles/StyleEtudiant.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.EnseignatnsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1364.0" stylesheets="@Styles/StyleEtudiant.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.EnseignantsController">
    <children>
       <Pane prefHeight="707.0" prefWidth="180.0" style="-fx-background-color: #DD3333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1184.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -205,7 +205,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <DatePicker minHeight="40.0" minWidth="216.0" promptText="Date de naissance">
+                  <DatePicker fx:id="date_naissance" minHeight="40.0" minWidth="216.0" promptText="Date de naissance">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
