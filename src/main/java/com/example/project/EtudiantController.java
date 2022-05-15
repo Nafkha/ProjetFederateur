@@ -75,7 +75,7 @@ public class EtudiantController implements Initializable
     private Button ajouter;
 
     @FXML
-    private TableView<Etudiant> studentTable;
+    private TableView<Etudiant> tableEtudiant;
 
     @FXML
     private TableColumn<Etudiant, Integer> cin_id;
@@ -235,11 +235,11 @@ public class EtudiantController implements Initializable
             {
                 if (recherche.textProperty().get().isEmpty())
                 {
-                    studentTable.setItems(list);
+                    tableEtudiant.setItems(list);
                     return;
                 }
                 ObservableList<Etudiant> items = FXCollections.observableArrayList();
-                ObservableList<TableColumn<Etudiant, ?>> column = studentTable.getColumns();
+                ObservableList<TableColumn<Etudiant, ?>> column = tableEtudiant.getColumns();
 
                 for (int row = 0; row < list.size(); row++)
                 {
@@ -255,7 +255,7 @@ public class EtudiantController implements Initializable
                         }
                     }
                 }
-                studentTable.setItems(items);
+                tableEtudiant.setItems(items);
             }
         });
     }
@@ -284,6 +284,6 @@ public class EtudiantController implements Initializable
             e.printStackTrace();
         }
 
-        studentTable.setItems(list);
+        tableEtudiant.setItems(list);
     }
 }
