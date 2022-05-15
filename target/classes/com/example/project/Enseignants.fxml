@@ -233,7 +233,7 @@
             </VBox>
             <HBox layoutX="615.0" layoutY="24.0" prefHeight="30.0" prefWidth="395.0">
                <children>
-                  <TextField prefHeight="30.0" prefWidth="457.0" promptText="Rechercher..." />
+                  <TextField fx:id="recherche" onKeyPressed="#recherche_data" prefHeight="30.0" prefWidth="457.0" promptText="Rechercher..." />
                </children>
             </HBox>
          </children></Pane>

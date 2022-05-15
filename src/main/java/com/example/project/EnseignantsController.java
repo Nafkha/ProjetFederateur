@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +23,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class EnseignatnsController implements Initializable
+public class EnseignantsController implements Initializable
 {
     private Stage stage;
     private Scene scene;
@@ -29,25 +31,37 @@ public class EnseignatnsController implements Initializable
 
     @FXML
     private TextField cin_ens,cnss_ens,nom_ens,prenom_ens,age_ens,mail_ens;
+
+    @FXML
+    private TextField recherche;
+
     @FXML
     private RadioButton H,F;
 
     @FXML
     private TableView<Enseignant> tableEnseignant;
+
     @FXML
     private TableColumn<Enseignant, Integer> cin_id;
+
     @FXML
     private TableColumn<Enseignant, Integer> cnss_id;
+
     @FXML
     private TableColumn<Enseignant, String> nom_id;
+
     @FXML
     private TableColumn<Enseignant, String> prenom_id;
+
     @FXML
     private TableColumn<Enseignant, String> sexe_id;
+
     @FXML
     private TableColumn<Enseignant, Integer> age_id;
+
     @FXML
     private TableColumn<Enseignant, String> mail_id;
+
     ObservableList<Enseignant> list = FXCollections.observableArrayList();
 
     @FXML
@@ -175,6 +189,40 @@ public class EnseignatnsController implements Initializable
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
+    }
+
+    public void recherche_data()
+    {
+        recherche.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                if (recherche.textProperty().get().isEmpty())
+                {
+                    tableEnseignant.setItems(list);
+                    return;
+                }
+                ObservableList<Enseignant> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Enseignant, ?>> column = tableEnseignant.getColumns();
+
+                for (int row = 0; row < list.size(); row++)
+                {
+                    for (int col = 0; col < column.size(); col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(recherche.getText().toLowerCase()) && cellVar.startsWith(recherche.getText().toLowerCase()))
+                        {
+                            items.add(list.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableEnseignant.setItems(items);
+            }
+        });
     }
 
     @Override

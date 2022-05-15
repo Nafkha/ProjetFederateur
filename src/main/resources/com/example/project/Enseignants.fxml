@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1364.0" stylesheets="@Styles/StyleEtudiant.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.EnseignatnsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1364.0" stylesheets="@Styles/StyleEtudiant.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.EnseignantsController">
    <children>
       <Pane prefHeight="707.0" prefWidth="180.0" style="-fx-background-color: #DD3333;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1184.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -233,7 +233,7 @@
             </VBox>
             <HBox layoutX="615.0" layoutY="24.0" prefHeight="30.0" prefWidth="395.0">
                <children>
-                  <TextField prefHeight="30.0" prefWidth="457.0" promptText="Rechercher..." />
+                  <TextField fx:id="recherche" onKeyPressed="#recherche_data" prefHeight="30.0" prefWidth="457.0" promptText="Rechercher..." />
                </children>
             </HBox>
          </children></Pane>

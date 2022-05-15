@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,16 +31,25 @@ public class EtudiantController implements Initializable
     private Parent root;
     @FXML
     private TextField cin_etu;
+
     @FXML
     private  TextField nom_etu;
+
     @FXML
     private TextField prenom_etu;
+
     @FXML
     private TextField mail_etu;
+
     @FXML
     private TextField age_etu;
+
     @FXML
     private ComboBox groupe_etu;
+
+    @FXML
+    private TextField recherche;
+
     @FXML
     private RadioButton H,F;
 
@@ -64,7 +75,7 @@ public class EtudiantController implements Initializable
     private Button ajouter;
 
     @FXML
-    private TableView<Etudiant> studentTable;
+    private TableView<Etudiant> tableEtudiant;
 
     @FXML
     private TableColumn<Etudiant, Integer> cin_id;
@@ -90,7 +101,8 @@ public class EtudiantController implements Initializable
     private TableColumn<Etudiant, String> mail_id;
 
     ObservableList<Etudiant> list = FXCollections.observableArrayList(
-
+        new Etudiant(13021155,"Mohamed", "Bennour", "H", 22,"m.bennour21232@pi.tn", 21232),
+        new Etudiant(12345678,"Mohamed", "Youssef Nafkha", "H", 23,"m.nafkha32524@pi.tn", 32524)
     );
     @FXML
     void ajouter_clik(ActionEvent event) throws IOException{
@@ -214,6 +226,40 @@ public class EtudiantController implements Initializable
         stage.show();
     }
 
+    public void recherche_data()
+    {
+        recherche.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                if (recherche.textProperty().get().isEmpty())
+                {
+                    tableEtudiant.setItems(list);
+                    return;
+                }
+                ObservableList<Etudiant> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Etudiant, ?>> column = tableEtudiant.getColumns();
+
+                for (int row = 0; row < list.size(); row++)
+                {
+                    for (int col = 0; col < column.size(); col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(recherche.getText().toLowerCase()) && cellVar.startsWith(recherche.getText().toLowerCase()))
+                        {
+                            items.add(list.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableEtudiant.setItems(items);
+            }
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -238,6 +284,6 @@ public class EtudiantController implements Initializable
             e.printStackTrace();
         }
 
-        studentTable.setItems(list);
+        tableEtudiant.setItems(list);
     }
 }
