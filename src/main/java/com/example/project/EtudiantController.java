@@ -20,6 +20,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -102,10 +103,7 @@ public class EtudiantController implements Initializable
     @FXML
     private TableColumn<Etudiant, String> mail_id;
 
-    ObservableList<Etudiant> list = FXCollections.observableArrayList(
-        new Etudiant(13021155,"Mohamed", "Bennour", "H", "","m.bennour21232@pi.tn", 21232),
-        new Etudiant(12345678,"Mohamed", "Youssef Nafkha", "H", "23","m.nafkha32524@pi.tn", 32524)
-    );
+    ObservableList<Etudiant> list = FXCollections.observableArrayList();
     @FXML
     void ajouter_clik(ActionEvent event) throws IOException{
         int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -148,12 +146,13 @@ public class EtudiantController implements Initializable
             ajouterPersonne.setString(5,sexe);
             ajouterPersonne.setString(6,date_n);
             ajouterPersonne.execute();
-            PreparedStatement ajouterEtudiant = App.con.prepareStatement("INSERT INTO ETUDIANT VALUES(?,?,?,?)");
+            PreparedStatement ajouterEtudiant = App.con.prepareStatement("INSERT INTO ETUDIANT VALUES(?,?,?,?,5)");
             ajouterEtudiant.setInt(2,Integer.parseInt(cin_etu.getText()));
             ajouterEtudiant.setString(1,num_insc);
             ajouterEtudiant.setString(3,groupe_etu.getValue().toString());
             ajouterEtudiant.setInt(4,year);
             ajouterEtudiant.execute();
+            list.add(new Etudiant(Integer.parseInt(cin_etu.getText()),nom_etu.getText(), prenom_etu.getText(),sexe,date_n,mail,Integer.parseInt(num_insc)));
 
 
         }catch (SQLException e){
@@ -285,6 +284,17 @@ public class EtudiantController implements Initializable
             groupe_etu.setItems(listeGroupes);
 
         }catch (SQLException e){
+            e.printStackTrace();
+        }
+        try{
+            Statement stmt = App.con.createStatement();
+            ResultSet rs = stmt.executeQuery("select personne.id, etudiant.num_insc ,personne.nom, personne.prenom, personne.sexe,  personne.date_naissence, personne.mail from personne join etudiant on (personne.id = etudiant.id)");
+            while(rs.next()){
+                list.add(new Etudiant(rs.getInt(1),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(2)));
+            }
+
+
+        }catch(SQLException e){
             e.printStackTrace();
         }
 
