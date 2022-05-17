@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -58,6 +59,9 @@
                            <image>
                               <Image url="@Images/graduated.png" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
                      </graphic>
                   </Button>
@@ -160,14 +164,14 @@
             <TableView fx:id="tableEtudiant" layoutX="276.0" layoutY="71.0" onMouseClicked="#selectionner" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
                   <TableColumn fx:id="cin_id" text="CIN" />
-                  <TableColumn fx:id="numInsc_id" prefWidth="120.0" text="Num inscription" />
-                  <TableColumn fx:id="nom_id" minWidth="90.0" text="Nom" />
-                  <TableColumn fx:id="prenom_id" minWidth="90.0" prefWidth="90.0" text="Prénom" />
+                  <TableColumn fx:id="numInsc_id" prefWidth="110.0" text="Num inscription" />
+                  <TableColumn fx:id="nom_id" minWidth="95.0" text="Nom" />
+                  <TableColumn fx:id="prenom_id" minWidth="95.0" prefWidth="90.0" text="Prénom" />
                   <TableColumn fx:id="sexe_id" minWidth="40.0" prefWidth="60.0" text="Sexe" />
                   <TableColumn fx:id="date_id" prefWidth="115.0" text="Date de naissance" />
-                  <TableColumn fx:id="mail_id" prefWidth="135.0" text="Mail" />
-                  <TableColumn fx:id="groupe_id" prefWidth="95.0" text="Groupe" />
-                  <TableColumn fx:id="numgrp_id" prefWidth="120.0" text="Num groupe" />
+                  <TableColumn fx:id="mail_id" prefWidth="165.0" text="Mail" />
+                  <TableColumn fx:id="groupe_id" prefWidth="75.0" text="Groupe" />
+                  <TableColumn fx:id="numgrp_id" prefWidth="110.0" text="Num groupe" />
                </columns>
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="582.0" prefWidth="236.0">
