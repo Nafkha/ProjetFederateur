@@ -104,6 +104,7 @@ public class EtudiantController implements Initializable
     private TableColumn<Etudiant, String> mail_id;
 
     ObservableList<Etudiant> list = FXCollections.observableArrayList();
+
     @FXML
     void ajouter_clik(ActionEvent event) throws IOException{
         int year = Calendar.getInstance().get(Calendar.YEAR);
