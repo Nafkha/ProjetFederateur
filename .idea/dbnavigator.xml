@@ -27,18 +27,15 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="670abd12-68e2-46af-9c1c-60af5b4fcc30">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="0697f227-f4d1-48f9-b216-bb5624a58f19">
+      <console name="Connection" type="STANDARD" schema="projetjava" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="670abd12-68e2-46af-9c1c-60af5b4fcc30" />
-  </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="670abd12-68e2-46af-9c1c-60af5b4fcc30" dataset="projetjava.matiere" active-filter-id="" />
+    <connection id="0697f227-f4d1-48f9-b216-bb5624a58f19" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -69,7 +66,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="670abd12-68e2-46af-9c1c-60af5b4fcc30" active="true" signed="false">
+      <connection id="0697f227-f4d1-48f9-b216-bb5624a58f19" active="true" signed="false">
         <database>
           <name value="Connection" />
           <description value="" />
@@ -82,13 +79,13 @@
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="3306" />
-          <database value="mysql" />
+          <database value="projetjava" />
           <type value="USER_PASSWORD" />
           <user value="root" />
           <deprecated-pwd value="YWRtaW4=" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
           <properties>
             <property key="serverTimezone" value="UTC" />
           </properties>

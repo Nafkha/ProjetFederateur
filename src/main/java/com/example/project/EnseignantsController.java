@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EnseignantsController implements Initializable
@@ -41,6 +42,9 @@ public class EnseignantsController implements Initializable
     private RadioButton H,F;
 
     @FXML
+    private ToggleGroup sexe;
+
+    @FXML
     private TableView<Enseignant> tableEnseignant;
 
     @FXML
@@ -59,7 +63,7 @@ public class EnseignantsController implements Initializable
     private TableColumn<Enseignant, String> sexe_id;
 
     @FXML
-    private TableColumn<Enseignant, String> age_id;
+    private TableColumn<Enseignant, String> date_id;
 
     @FXML
     private TableColumn<Enseignant, String> mail_id;
@@ -226,6 +230,31 @@ public class EnseignantsController implements Initializable
         });
     }
 
+    public void selectionner()
+    {
+        int index = tableEnseignant.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1)
+        {
+            return;
+        }
+        cin_ens.setText((cin_id.getCellData(index).toString()));
+        cnss_ens.setText((cnss_id.getCellData(index).toString()));
+        nom_ens.setText((nom_id.getCellData(index)));
+        prenom_ens.setText((prenom_id.getCellData(index)));
+        if (sexe_id.getCellData(index).equals("H"))
+        {
+            H.fire();
+        }
+        else
+        {
+            F.fire();
+        }
+
+        LocalDate ld = LocalDate.parse(date_id.getCellData(index));
+        date_naissance.setValue(ld);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -234,7 +263,7 @@ public class EnseignantsController implements Initializable
         nom_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("nom"));
         prenom_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("prenom"));
         sexe_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("sexe"));
-        age_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("date_naissence"));
+        date_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("date_naissence"));
         mail_id.setCellValueFactory(new PropertyValueFactory<Enseignant, String>("mail"));
         try {
             Statement stmt = App.con.createStatement();

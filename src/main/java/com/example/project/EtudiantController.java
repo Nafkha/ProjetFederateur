@@ -98,7 +98,7 @@ public class EtudiantController implements Initializable
     private TableColumn<Etudiant, String> sexe_id;
 
     @FXML
-    private TableColumn<Etudiant, String> age_id;
+    private TableColumn<Etudiant, String> date_id;
 
     @FXML
     private TableColumn<Etudiant, String> mail_id;
@@ -271,7 +271,7 @@ public class EtudiantController implements Initializable
         nom_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("nom"));
         prenom_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("prenom"));
         sexe_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("sexe"));
-        age_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("date_naissence"));
+        date_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("date_naissence"));
         mail_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("mail"));
 
         try{
