@@ -238,10 +238,10 @@ public class EnseignantsController implements Initializable
         {
             return;
         }
-        cin_ens.setText((cin_id.getCellData(index).toString()));
-        cnss_ens.setText((cnss_id.getCellData(index).toString()));
-        nom_ens.setText((nom_id.getCellData(index)));
-        prenom_ens.setText((prenom_id.getCellData(index)));
+        cin_ens.setText(cin_id.getCellData(index).toString());
+        cnss_ens.setText(cnss_id.getCellData(index).toString());
+        nom_ens.setText(nom_id.getCellData(index));
+        prenom_ens.setText(prenom_id.getCellData(index));
         if (sexe_id.getCellData(index).equals("H"))
         {
             H.fire();

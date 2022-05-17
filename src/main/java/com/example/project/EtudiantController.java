@@ -21,6 +21,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -44,8 +45,9 @@ public class EtudiantController implements Initializable
 
     @FXML
     private TextField age_etu;
+
     @FXML
-    private DatePicker date_naissence;
+    private DatePicker date_naissance;
 
     @FXML
     private ComboBox groupe_etu;
@@ -140,7 +142,7 @@ public class EtudiantController implements Initializable
             }else{
                 sexe = "F";
             }
-            String date_n = date_naissence.getValue().toString();
+            String date_n = date_naissance.getValue().toString();
             System.out.println(date_n);
             String mail = prenom_etu.getText().substring(0,1).toLowerCase(Locale.ROOT)+"."+nom_etu.getText().replaceAll(" ","").toLowerCase(Locale.ROOT)+num_insc+"@pi.tn";
             ajouterPersonne.setInt(1,Integer.parseInt(cin_etu.getText()));
@@ -265,6 +267,33 @@ public class EtudiantController implements Initializable
                 tableEtudiant.setItems(items);
             }
         });
+    }
+
+    public void selectionner()
+    {
+        int index = tableEtudiant.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1)
+        {
+            return;
+        }
+
+        cin_etu.setText(cin_id.getCellData(index).toString());
+        nom_etu.setText(nom_id.getCellData(index));
+        prenom_etu.setText(prenom_id.getCellData(index));
+
+        if (sexe_id.getCellData(index).equals("H"))
+        {
+            H.fire();
+        }
+        else
+        {
+            F.fire();
+        }
+        LocalDate ld = LocalDate.parse(date_id.getCellData(index));
+        date_naissance.setValue(ld);
+        groupe_etu.setValue(groupe_id.getCellData(index));
+
     }
 
     @Override
