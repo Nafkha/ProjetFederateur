@@ -102,8 +102,12 @@ public class EtudiantController implements Initializable
 
     @FXML
     private TableColumn<Etudiant, String> mail_id;
-
+    @FXML
+    private TableColumn<Etudiant, String> groupe_id;
+    @FXML
+    private TableColumn<Etudiant, Integer> numgrp_id;
     ObservableList<Etudiant> list = FXCollections.observableArrayList();
+
     @FXML
     void ajouter_clik(ActionEvent event) throws IOException{
         int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -152,7 +156,7 @@ public class EtudiantController implements Initializable
             ajouterEtudiant.setString(3,groupe_etu.getValue().toString());
             ajouterEtudiant.setInt(4,year);
             ajouterEtudiant.execute();
-            list.add(new Etudiant(Integer.parseInt(cin_etu.getText()),nom_etu.getText(), prenom_etu.getText(),sexe,date_n,mail,Integer.parseInt(num_insc)));
+            list.add(new Etudiant(Integer.parseInt(cin_etu.getText()),nom_etu.getText(), prenom_etu.getText(),sexe,date_n,mail,Integer.parseInt(num_insc),groupe_etu.getValue().toString(),5));
 
 
         }catch (SQLException e){
@@ -273,6 +277,9 @@ public class EtudiantController implements Initializable
         sexe_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("sexe"));
         date_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("date_naissence"));
         mail_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("mail"));
+        groupe_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("grp"));
+        numgrp_id.setCellValueFactory(new PropertyValueFactory<Etudiant, Integer>("num_grp"));
+
 
         try{
             PreparedStatement pstmt = App.con.prepareStatement("SELECT idGrp from GROUPE");
@@ -288,9 +295,9 @@ public class EtudiantController implements Initializable
         }
         try{
             Statement stmt = App.con.createStatement();
-            ResultSet rs = stmt.executeQuery("select personne.id, etudiant.num_insc ,personne.nom, personne.prenom, personne.sexe,  personne.date_naissence, personne.mail from personne join etudiant on (personne.id = etudiant.id)");
+            ResultSet rs = stmt.executeQuery("select personne.id, etudiant.num_insc ,personne.nom, personne.prenom, personne.sexe,  personne.date_naissence, personne.mail, etudiant.grp, etudiant.num_grp from personne join etudiant on (personne.id = etudiant.id)");
             while(rs.next()){
-                list.add(new Etudiant(rs.getInt(1),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(2)));
+                list.add(new Etudiant(rs.getInt(1),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(2),rs.getString(8),rs.getInt(9)));
             }
 
 

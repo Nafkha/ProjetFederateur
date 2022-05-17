@@ -192,10 +192,10 @@
                               <Insets bottom="10.0" left="15.0" right="20.0" top="10.0" />
                            </HBox.margin>
                            <toggleGroup>
-                              <ToggleGroup fx:id="sexe1" />
+                              <ToggleGroup fx:id="sexe" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="F" mnemonicParsing="false" text="Femme" toggleGroup="$sexe1">
+                        <RadioButton fx:id="F" mnemonicParsing="false" text="Femme" toggleGroup="$sexe">
                            <HBox.margin>
                               <Insets bottom="10.0" left="15.0" right="20.0" top="10.0" />
                            </HBox.margin>

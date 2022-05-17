@@ -159,14 +159,15 @@
          <children>
             <TableView fx:id="tableEtudiant" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
-                  <TableColumn fx:id="cin_id" prefWidth="105.0" text="CIN" />
+                  <TableColumn fx:id="cin_id" prefWidth="50.0" text="CIN" />
                   <TableColumn fx:id="numInsc_id" prefWidth="142.0" text="Numéro d'inscription" />
-                  <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="105.0" text="Nom" />
-                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="105.0" text="Prénom" />
+                  <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="90.0" text="Nom" />
+                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="90.0" text="Prénom" />
                   <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="75.0" text="Sexe" />
                   <TableColumn fx:id="date_id" prefWidth="135.0" text="Date de naissance" />
                   <TableColumn fx:id="mail_id" prefWidth="145.0" text="Mail" />
-                  <TableColumn prefWidth="105.0" text="Groupe" />
+                  <TableColumn fx:id="groupe_id" prefWidth="105.0" text="Groupe" />
+                  <TableColumn fx:id="numgrp_id" prefWidth="75.0" text="Num groupe" />
                </columns>
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="582.0" prefWidth="236.0">
@@ -203,7 +204,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <DatePicker minHeight="40.0" minWidth="216.0" promptText="Date de naissance">
+                  <DatePicker fx:id="date_naissence" minHeight="40.0" minWidth="216.0" promptText="Date de naissance">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
