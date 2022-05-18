@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class GroupeController implements Initializable
@@ -47,6 +50,8 @@ public class GroupeController implements Initializable
 
     @FXML
     private TextField idgrp,numgrp;
+    @FXML
+    private TextField recherche;
     @FXML
     private ComboBox niveaugrp,diplomegrp,specialitegrp;
 
@@ -84,6 +89,7 @@ public class GroupeController implements Initializable
             "Licence",
             "Mastére"
     );
+
 
     @FXML
     void ajouter_grp(ActionEvent event) throws IOException{
@@ -211,6 +217,52 @@ public class GroupeController implements Initializable
         }
         niveaugrp.setItems(niveau);
 
+    }
+
+    public void recherche_data()
+    {
+        recherche.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                if (recherche.textProperty().get().isEmpty())
+                {
+                    tableGroupe.setItems(list);
+                    return;
+                }
+                ObservableList<Groupe> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Groupe, ?>> column = tableGroupe.getColumns();
+                for (int row = 0; row < list.size(); row++)
+                {
+                    for (int col = 0; col < column.size(); col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(recherche.getText().toLowerCase()) && cellVar.startsWith(recherche.getText().toLowerCase()))
+                        {
+                            items.add(list.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableGroupe.setItems(items);
+            }
+        });
+    }
+
+    public void selectionner()
+    {
+        int index = tableGroupe.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1)
+        {
+            return;
+        }
+        diplomegrp.setValue(diplome_id.getCellData(index));
+        specialitegrp.setValue(specialite_id.getCellData(index));
+        niveaugrp.setValue(niveau_id.getCellData(index));
     }
 
     @Override

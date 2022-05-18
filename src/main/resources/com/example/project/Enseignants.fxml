@@ -221,7 +221,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Modifier">
+                        <Button mnemonicParsing="false" onAction="#modifier_click" prefHeight="30.0" prefWidth="170.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Modifier">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="30.0" />
                            </HBox.margin>
