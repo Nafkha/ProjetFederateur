@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,15 +29,15 @@ public class ModuleController implements Initializable
     private Scene scene;
     private Parent root;
     @FXML
-    private TableView studentTable;
+    private TableView<Module> tableModule;
     @FXML
     private TableColumn<Module,String> id_gm;
     @FXML
-    private TableColumn<Module,String> nom__gm;
+    private TableColumn<Module,String> nom_id;
     @FXML
-    private TableColumn<Module,Double> coef_gm;
+    private TableColumn<Module,Double> coef_id;
     @FXML
-    private TableColumn<Module,String> grp_gm;
+    private TableColumn<Module,String> grp_id;
 
 
     @FXML
@@ -56,9 +58,11 @@ public class ModuleController implements Initializable
     @FXML
     private Button absencebtn;
     @FXML
-    private TextField nom_gm;
+    private TextField nom_m;
     @FXML
-    private ComboBox groupe;
+    private TextField recherche;
+    @FXML
+    private ComboBox grp_m;
     @FXML
     private Button ajouter_m;
 
@@ -70,8 +74,8 @@ public class ModuleController implements Initializable
     @FXML
     void ajouter_m_click(ActionEvent event) throws IOException{
             try{
-                String nom_module = nom_gm.getText();
-                String grp = groupe.getValue().toString();
+                String nom_module = nom_m.getText();
+                String grp = grp_m.getValue().toString();
                 String id_Module = nom_module + '-'+grp;
                 PreparedStatement pstmt = App.con.prepareStatement("INSERT INTO GROUPEMODULE VALUES(?,?,0,?)");
                 pstmt.setString(1,id_Module);
@@ -155,6 +159,51 @@ public class ModuleController implements Initializable
         stage.show();
     }
 
+    public void recherche_data()
+    {
+        recherche.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                if (recherche.textProperty().get().isEmpty())
+                {
+                    tableModule.setItems(list);
+                    return;
+                }
+                ObservableList<Module> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Module, ?>> column = tableModule.getColumns();
+                for (int row = 0; row < list.size(); row++)
+                {
+                    for (int col = 0; col < column.size(); col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(recherche.getText().toLowerCase()) && cellVar.startsWith(recherche.getText().toLowerCase()))
+                        {
+                            items.add(list.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableModule.setItems(items);
+            }
+        });
+    }
+
+    public void selectionner()
+    {
+        int index = tableModule.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1)
+        {
+            return;
+        }
+        nom_m.setText(nom_id.getCellData(index));
+        grp_m.setValue(grp_id.getCellData(index));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -171,7 +220,7 @@ public class ModuleController implements Initializable
         }catch (SQLException e){
             e.printStackTrace();
         }
-        groupe.setItems(listeGroupe);
+        grp_m.setItems(listeGroupe);
         try{
             Statement stmt = App.con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM GROUPEMODULE");
@@ -183,11 +232,11 @@ public class ModuleController implements Initializable
 
         }
         id_gm.setCellValueFactory(new PropertyValueFactory<Module, String>("idgm"));
-        nom__gm.setCellValueFactory(new PropertyValueFactory<Module, String>("nom"));
-        coef_gm.setCellValueFactory(new PropertyValueFactory<Module, Double>("coef"));
-        grp_gm.setCellValueFactory(new PropertyValueFactory<Module, String>("grp"));
+        nom_id.setCellValueFactory(new PropertyValueFactory<Module, String>("nom"));
+        coef_id.setCellValueFactory(new PropertyValueFactory<Module, Double>("coef"));
+        grp_id.setCellValueFactory(new PropertyValueFactory<Module, String>("grp"));
 
-        studentTable.setItems(list);
+        tableModule.setItems(list);
 
 
     }
