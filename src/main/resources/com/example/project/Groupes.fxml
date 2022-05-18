@@ -160,11 +160,11 @@
          <children>
             <TableView fx:id="studentTable" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
-                  <TableColumn fx:id="cin_id" prefWidth="150.0" text="ID" />
-                  <TableColumn fx:id="numInsc_id" prefWidth="150.0" text="Niveau" />
-                  <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="150.0" text="Diplôme" />
-                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="150.0" text="Spécialité" />
-                  <TableColumn fx:id="sexe_id" minWidth="1.0" prefWidth="150.0" text="Numéro de groupe" />
+                  <TableColumn fx:id="code_id" prefWidth="150.0" text="ID" />
+                  <TableColumn fx:id="niveau_id" prefWidth="150.0" text="Niveau" />
+                  <TableColumn fx:id="diplome_id" minWidth="9.0" prefWidth="150.0" text="Diplôme" />
+                  <TableColumn fx:id="specialite_id" minWidth="8.0" prefWidth="150.0" text="Spécialité" />
+                  <TableColumn fx:id="numgrp_id" minWidth="1.0" prefWidth="150.0" text="Numéro de groupe" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -31,6 +32,7 @@ public class GroupeController implements Initializable
     private TextField idgrp,numgrp;
     @FXML
     private ComboBox niveaugrp,diplomegrp,specialitegrp;
+
     @FXML
     private Button ajoutergrp;
 

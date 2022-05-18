@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -32,6 +33,8 @@ public class LoginController implements Initializable
     private TextField user;
     @FXML
     private TextField pass;
+    @FXML
+    private Label msg_id;
 
     @FXML
     void login_click(ActionEvent event) throws IOException
@@ -53,6 +56,7 @@ public class LoginController implements Initializable
                 stage.show();
             }else{
                 System.out.println("utilisateur n'existe pas");
+                msg_id.setText("Identifiant ou mot de passe invalide");
             }
 
         }catch(SQLException e){
