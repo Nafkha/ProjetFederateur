@@ -39,7 +39,6 @@ public class ModuleController implements Initializable
     @FXML
     private TableColumn<Module,String> grp_id;
 
-
     @FXML
     private Button etudiantsbtn;
 

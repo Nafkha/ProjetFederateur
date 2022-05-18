@@ -46,8 +46,6 @@ public class GroupeController implements Initializable
      ObservableList<Groupe> list = FXCollections.observableArrayList();
 
 
-
-
     @FXML
     private TextField idgrp,numgrp;
     @FXML
