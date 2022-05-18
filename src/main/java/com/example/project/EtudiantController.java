@@ -51,6 +51,8 @@ public class EtudiantController implements Initializable
 
     @FXML
     private ComboBox groupe_etu;
+    @FXML
+    private ComboBox groupe_etu1;
 
     @FXML
     private TextField recherche;
@@ -152,13 +154,14 @@ public class EtudiantController implements Initializable
             ajouterPersonne.setString(5,sexe);
             ajouterPersonne.setString(6,date_n);
             ajouterPersonne.execute();
-            PreparedStatement ajouterEtudiant = App.con.prepareStatement("INSERT INTO ETUDIANT VALUES(?,?,?,?,5)");
+            PreparedStatement ajouterEtudiant = App.con.prepareStatement("INSERT INTO ETUDIANT VALUES(?,?,?,?,?)");
             ajouterEtudiant.setInt(2,Integer.parseInt(cin_etu.getText()));
             ajouterEtudiant.setString(1,num_insc);
             ajouterEtudiant.setString(3,groupe_etu.getValue().toString());
             ajouterEtudiant.setInt(4,year);
+            ajouterEtudiant.setInt(5,Integer.parseInt(groupe_etu1.getValue().toString()));
             ajouterEtudiant.execute();
-            list.add(new Etudiant(Integer.parseInt(cin_etu.getText()),nom_etu.getText(), prenom_etu.getText(),sexe,date_n,mail,Integer.parseInt(num_insc),groupe_etu.getValue().toString(),5));
+            list.add(new Etudiant(Integer.parseInt(cin_etu.getText()),nom_etu.getText(), prenom_etu.getText(),sexe,date_n,mail,Integer.parseInt(num_insc),groupe_etu.getValue().toString(),Integer.parseInt(groupe_etu1.getValue().toString())));
 
 
         }catch (SQLException e){
@@ -295,6 +298,28 @@ public class EtudiantController implements Initializable
         groupe_etu.setValue(groupe_id.getCellData(index));
 
     }
+    @FXML
+    void onChange(ActionEvent event) throws IOException{
+        try{
+            PreparedStatement pstmt = App.con.prepareStatement("SELECT num_g from GROUPE where(idGrp = ?) ");
+            ObservableList<Integer> num_grp_list = FXCollections.observableArrayList();
+            pstmt.setString(1,groupe_etu.getValue().toString());
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                num_grp_list.add(rs.getInt(1));
+
+            }
+            groupe_etu1.setItems(num_grp_list);
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Erreur de query");
+
+        }
+
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -311,7 +336,7 @@ public class EtudiantController implements Initializable
 
 
         try{
-            PreparedStatement pstmt = App.con.prepareStatement("SELECT idGrp from GROUPE");
+            PreparedStatement pstmt = App.con.prepareStatement("SELECT distinct (idGrp) from GROUPE");
             ObservableList<String> listeGroupes = FXCollections.observableArrayList();
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
@@ -333,6 +358,7 @@ public class EtudiantController implements Initializable
         }catch(SQLException e){
             e.printStackTrace();
         }
+
 
         tableEtudiant.setItems(list);
     }
