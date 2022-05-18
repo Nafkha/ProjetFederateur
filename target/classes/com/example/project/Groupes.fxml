@@ -158,7 +158,7 @@
       </Pane>
       <Pane layoutX="177.0" prefHeight="707.0" prefWidth="1190.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="studentTable" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
+            <TableView fx:id="tableGroupe" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
                   <TableColumn fx:id="code_id" prefWidth="150.0" text="ID" />
                   <TableColumn fx:id="niveau_id" prefWidth="150.0" text="Niveau" />

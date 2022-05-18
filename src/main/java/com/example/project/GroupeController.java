@@ -6,13 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +19,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class GroupeController implements Initializable
@@ -27,6 +27,23 @@ public class GroupeController implements Initializable
     private Stage stage;
     private Scene scene;
     private Parent root;
+    @FXML
+    private TableView<Groupe> tableGroupe;
+    @FXML
+    private TableColumn<Groupe, String> code_id;
+    @FXML
+    private TableColumn<Groupe, String> niveau_id;
+    @FXML
+    private TableColumn<Groupe, String> diplome_id;
+    @FXML
+    private TableColumn<Groupe, String> specialite_id;
+    @FXML
+    private TableColumn<Groupe, Integer> numgrp_id;
+
+     ObservableList<Groupe> list = FXCollections.observableArrayList();
+
+
+
 
     @FXML
     private TextField idgrp,numgrp;
@@ -98,6 +115,7 @@ public class GroupeController implements Initializable
             pstmt.setString(4,specialiteGrp);
             pstmt.setInt(5,numGrp);
             pstmt.execute();
+            list.add(new Groupe(idGrp,niveauGrp,diplomeGrp,specialiteGrp,numGrp));
             System.out.println("Groupe ajoutée avec succées");
 
         }catch (SQLException e){
@@ -200,6 +218,22 @@ public class GroupeController implements Initializable
     {
         specialitegrp.setItems(specialite);
         diplomegrp.setItems(diplome);
+        code_id.setCellValueFactory(new PropertyValueFactory<Groupe, String>("idGrp"));
+        niveau_id.setCellValueFactory(new PropertyValueFactory<Groupe, String>("niveau"));
+        diplome_id.setCellValueFactory(new PropertyValueFactory<Groupe, String>("diplome"));
+        specialite_id.setCellValueFactory(new PropertyValueFactory<Groupe, String>("specialite"));
+        numgrp_id.setCellValueFactory(new PropertyValueFactory<Groupe, Integer>("num_grp"));
+        try{
+            Statement stmt = App.con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM GROUPE");
+            while (rs.next()){
+                list.add(new Groupe(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5)));
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        tableGroupe.setItems(list);
 
 
 
