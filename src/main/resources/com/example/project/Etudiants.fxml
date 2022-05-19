@@ -65,7 +65,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="enseignatnbtn" mnemonicParsing="false" onAction="#enseignatn_click" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignatns" textFill="WHITE">
+                  <Button fx:id="enseignatnbtn" mnemonicParsing="false" onAction="#enseignatn_click" prefHeight="20.0" prefWidth="181.0" stylesheets="@Styles/StyleHome.css" text="Enseignants" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -230,7 +230,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />
                            </HBox.margin>
                         </Button>
-                        <Button minHeight="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Modifier">
+                        <Button fx:id="modifier_button" minHeight="30.0" mnemonicParsing="false" onAction="#modifier_click" prefHeight="30.0" prefWidth="170.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Modifier">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />
                            </HBox.margin>

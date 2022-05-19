@@ -32,4 +32,12 @@ public class Etudiant extends Personne
     public int getNum_grp() {
         return num_grp;
     }
+
+    public void setGrp(String grp) {
+        this.grp = grp;
+    }
+
+    public void setNum_grp(int num_grp) {
+        this.num_grp = num_grp;
+    }
 }

@@ -111,6 +111,11 @@ public class EtudiantController implements Initializable
     @FXML
     private TableColumn<Etudiant, Integer> numgrp_id;
     ObservableList<Etudiant> list = FXCollections.observableArrayList();
+    @FXML
+    private Button modifier_button;
+
+    private int index;
+
 
     @FXML
     void ajouter_clik(ActionEvent event) throws IOException{
@@ -167,6 +172,24 @@ public class EtudiantController implements Initializable
         }catch (SQLException e){
             e.printStackTrace();
 
+        }
+
+    }
+    @FXML
+    void modifier_click(ActionEvent event) throws IOException{
+
+        try {
+            PreparedStatement pstmt = App.con.prepareStatement("update etudiant set grp =?,num_grp=? where(num_insc =?) ");
+            pstmt.setString(1,groupe_etu.getValue().toString());
+            pstmt.setInt(2,Integer.parseInt(groupe_etu1.getValue().toString()));
+            pstmt.setInt(3,numInsc_id.getCellData(index));
+            pstmt.execute();
+            list.get(index).setGrp(groupe_etu.getValue().toString());
+            list.get(index).setNum_grp(Integer.parseInt(groupe_etu1.getValue().toString()));
+            tableEtudiant.refresh();
+
+        }catch (SQLException e){
+            System.out.println("Erreur dans modification");
         }
 
     }
@@ -274,7 +297,14 @@ public class EtudiantController implements Initializable
 
     public void selectionner()
     {
-        int index = tableEtudiant.getSelectionModel().getSelectedIndex();
+         index = tableEtudiant.getSelectionModel().getSelectedIndex();
+        cin_etu.setEditable(false);
+        nom_etu.setEditable(false);
+        prenom_etu.setEditable(false);
+        H.setDisable(true);
+        F.setDisable(true);
+        date_naissance.setEditable(false);
+
 
         if (index <= -1)
         {
@@ -296,6 +326,7 @@ public class EtudiantController implements Initializable
         LocalDate ld = LocalDate.parse(date_id.getCellData(index));
         date_naissance.setValue(ld);
         groupe_etu.setValue(groupe_id.getCellData(index));
+
 
     }
     @FXML
