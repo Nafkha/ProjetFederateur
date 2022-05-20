@@ -212,6 +212,17 @@ public class EtudiantController implements Initializable
     }
 
     @FXML
+    void student_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Etudiants.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene =new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
     void enseignatn_click(ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("Enseignants.fxml"));

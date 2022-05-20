@@ -140,6 +140,17 @@ public class EnseignantsController implements Initializable
         stage.show();
     }
 
+    @FXML
+    void enseignatn_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Enseignants.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
 
     @FXML
     void matiere_click(ActionEvent event) throws IOException

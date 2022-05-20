@@ -101,6 +101,17 @@ public class AbsenceController implements Initializable
         stage.show();
     }
 
+    @FXML
+    void absence_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Absences.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene =new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {

@@ -48,7 +48,7 @@ public class LoginController implements Initializable
             ResultSet rs =   pstmt.executeQuery();
             if(rs.next()) {
 
-                root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                root = FXMLLoader.load(getClass().getResource("Etudiants.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

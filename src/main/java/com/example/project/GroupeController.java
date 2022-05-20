@@ -176,6 +176,17 @@ public class GroupeController implements Initializable
     }
 
     @FXML
+    void group_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Groupes.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
     void note_click(ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("Notes.fxml"));

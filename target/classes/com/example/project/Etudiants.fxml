@@ -32,22 +32,7 @@
                         <Insets left="20.0" right="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="150.0" stylesheets="@Styles/StyleHome.css" text="Profile" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Serif Regular" size="18.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/programmer.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="161.0" stylesheets="@Styles/StyleHome.css" text="Etudiants" textFill="WHITE">
+                  <Button fx:id="etudiantsbtn" mnemonicParsing="false" onAction="#student_click" prefHeight="20.0" prefWidth="161.0" stylesheets="@Styles/StyleHome.css" text="Etudiants" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -59,9 +44,6 @@
                            <image>
                               <Image url="@Images/graduated.png" />
                            </image>
-                           <effect>
-                              <DropShadow />
-                           </effect>
                         </ImageView>
                      </graphic>
                   </Button>

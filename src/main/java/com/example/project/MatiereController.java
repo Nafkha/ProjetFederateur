@@ -194,6 +194,17 @@ public class MatiereController implements Initializable
     }
 
     @FXML
+    void matiere_click(ActionEvent event) throws IOException
+    {
+        root = FXMLLoader.load(getClass().getResource("Matieres.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+    }
+
+    @FXML
     void module_click(ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("Modules.fxml"));
