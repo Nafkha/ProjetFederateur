@@ -158,7 +158,7 @@
       </Pane>
       <Pane layoutX="177.0" prefHeight="707.0" prefWidth="1190.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="tableMatiere" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
+            <TableView fx:id="tableMatiere" layoutX="276.0" layoutY="71.0" onMouseClicked="#selectionner" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
                   <TableColumn fx:id="code_mat" prefWidth="150.0" text="Code" />
                   <TableColumn fx:id="nom_matiere" prefWidth="150.0" text="Nom" />
@@ -203,7 +203,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="35.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Modifier">
+                        <Button fx:id="modifier" mnemonicParsing="false" onAction="#modifier_click" prefHeight="30.0" prefWidth="170.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Modifier">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="35.0" />
                            </HBox.margin>

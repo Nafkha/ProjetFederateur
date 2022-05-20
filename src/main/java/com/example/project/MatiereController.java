@@ -19,6 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MatiereController implements Initializable
@@ -58,6 +59,9 @@ public class MatiereController implements Initializable
     private ComboBox nb_notes_mat;
 
     @FXML
+    private Button modifier;
+
+    @FXML
     private Button ajouterMatiere;
 
     @FXML
@@ -77,8 +81,69 @@ public class MatiereController implements Initializable
 
     @FXML
     private Button absencebtn;
+    private int index;
 
     ObservableList<Matiere> listeMatieres = FXCollections.observableArrayList();
+
+    @FXML
+    void modifier_click(ActionEvent event) throws IOException{
+        try{
+            PreparedStatement pstmt = App.con.prepareStatement("update matiere set coef=?,ens=? where(idMat=?) ");
+            pstmt.setDouble(1,Double.parseDouble(coef_mat.getText()));
+            System.out.println(coef_mat.getText() + " "+ens_mat.getText()+ " "+code_mat.getCellData(index).toString());
+
+            pstmt.setInt(2,Integer.parseInt(ens_mat.getText()));
+            pstmt.setString(3,code_mat.getCellData(index).toString());
+            pstmt.execute();
+            PreparedStatement stmt  = App.con.prepareStatement("SELECT sum(coef) from matiere where(gm=?)");
+            stmt.setString(1,gm_mat.getCellData(index).toString());
+            ResultSet rs = stmt.executeQuery();
+            double c = 0;
+            while (rs.next()){
+                c=rs.getDouble(1);
+            }
+            pstmt = App.con.prepareStatement("update groupemodule set coefGM=? where(idGM=?) ");
+            pstmt.setDouble(1,c);
+            pstmt.setString(2,gm_mat.getCellData(index).toString());
+            pstmt.execute();
+            listeMatieres.get(index).setCoef(Double.parseDouble(coef_mat.getText()));
+            listeMatieres.get(index).setEns(Integer.parseInt(ens_mat.getText()));
+            tableMatiere.refresh();
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("Erreur Modification Matiere");
+        }
+
+    }
+    @FXML
+    public void selectionner()
+    {
+        index = tableMatiere.getSelectionModel().getSelectedIndex();
+        code_mat.setEditable(false);
+        nom_matiere.setEditable(false);
+        code_mat.setEditable(false);
+        ens_matiere.setEditable(false);
+        nb_notes.setEditable(false);
+        gm_mat.setEditable(false);
+
+        if (index <= -1)
+        {
+            return;
+        }
+
+        nom_mat.setText(nom_matiere.getCellData(index).toString());
+        coef_mat.setText(coef_matiere.getCellData(index).toString());
+        ens_mat.setText(ens_matiere.getCellData(index).toString());
+        nom_mat.setDisable(true);
+        module_mat.setDisable(true);
+        nb_notes_mat.setDisable(true);
+
+
+
+
+    }
 
 
     @FXML
