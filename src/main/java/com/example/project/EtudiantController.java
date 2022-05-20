@@ -32,6 +32,8 @@ public class EtudiantController implements Initializable
     private Scene scene;
     private Parent root;
     @FXML
+    private Button supprimer;
+    @FXML
     private TextField cin_etu;
 
     @FXML
@@ -115,7 +117,22 @@ public class EtudiantController implements Initializable
     private Button modifier_button;
 
     private int index;
+    @FXML
+    void supprimer_click(ActionEvent event) throws IOException{
+            try{
+                PreparedStatement pstmt = App.con.prepareStatement("delete from etudiant where(id=?)");
+                pstmt.setInt(1,Integer.parseInt(cin_etu.getText()));
+                pstmt.execute();
+                pstmt = App.con.prepareStatement("delete from personne where(Id = ?)");
+                pstmt.setInt(1,Integer.parseInt(cin_etu.getText()));
+                pstmt.execute();
+                list.remove(index);
+                tableEtudiant.refresh();
 
+            }catch (SQLException e){
+                System.out.println("Erreur de suppression :"+e);
+            }
+    }
 
     @FXML
     void ajouter_clik(ActionEvent event) throws IOException{
@@ -314,6 +331,7 @@ public class EtudiantController implements Initializable
         cin_etu.setText(cin_id.getCellData(index).toString());
         nom_etu.setText(nom_id.getCellData(index));
         prenom_etu.setText(prenom_id.getCellData(index));
+        supprimer.setDisable(false);
 
         if (sexe_id.getCellData(index).equals("H"))
         {
@@ -364,6 +382,7 @@ public class EtudiantController implements Initializable
         mail_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("mail"));
         groupe_id.setCellValueFactory(new PropertyValueFactory<Etudiant, String>("grp"));
         numgrp_id.setCellValueFactory(new PropertyValueFactory<Etudiant, Integer>("num_grp"));
+        supprimer.setDisable(true);
 
 
         try{
