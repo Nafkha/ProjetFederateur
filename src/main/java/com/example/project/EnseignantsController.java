@@ -90,6 +90,24 @@ public class EnseignantsController implements Initializable
 
     @FXML
     private Button absencebtn;
+    @FXML
+    private Button supprimer;
+
+    @FXML
+    void supprimer_click(ActionEvent event) throws IOException{
+
+        try{
+            PreparedStatement pstmt = App.con.prepareStatement("update matiere set ens=null where(ens=?)");
+            pstmt.setInt(1,Integer.parseInt(cnss_ens.getText()));
+            pstmt.execute();
+            pstmt = App.con.prepareStatement("delete from personne where Id=? ");
+            pstmt.setInt(1,Integer.parseInt(cin_ens.getText()));
+            pstmt.execute();
+
+        }catch (SQLException e){
+            System.out.println("Erreur de supression");
+        }
+    }
 
     @FXML
     void ajouter_click(ActionEvent event){
