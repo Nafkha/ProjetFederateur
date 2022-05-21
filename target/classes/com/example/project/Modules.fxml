@@ -86,6 +86,9 @@
                            <image>
                               <Image url="@Images/abc.png" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
                      </graphic>
                   </Button>

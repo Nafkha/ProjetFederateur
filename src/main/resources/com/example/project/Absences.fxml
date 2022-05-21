@@ -6,7 +6,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -130,6 +129,9 @@
                            <image>
                               <Image url="@Images/absent.png" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
                      </graphic>
                      <VBox.margin>

@@ -34,6 +34,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="bcpkix-jdk15on-1.70" level="project" />
+    <orderEntry type="library" name="poi" level="project" />
   </component>
 </module>
