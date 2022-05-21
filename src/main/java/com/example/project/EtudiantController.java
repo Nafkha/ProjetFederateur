@@ -26,6 +26,20 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+//EXCEL
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 public class EtudiantController implements Initializable
 {
     private Stage stage;
@@ -58,6 +72,8 @@ public class EtudiantController implements Initializable
 
     @FXML
     private TextField recherche;
+    @FXML
+    private TextField groupeRech;
 
     @FXML
     private RadioButton H,F;
@@ -115,8 +131,78 @@ public class EtudiantController implements Initializable
     ObservableList<Etudiant> list = FXCollections.observableArrayList();
     @FXML
     private Button modifier_button;
+    @FXML
+    private TextField numgrprech;
 
     private int index;
+    @FXML
+    void export_click(ActionEvent event) throws IOException{
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("student Details");
+        Map<String, Object[]> data
+                = new TreeMap<String, Object[]>();
+        data.put("1",new Object[]{"CIN","Num_insc","Nom","Prénom","Sexe","Date de naissence","Email","Groupe","Numéro Groupe"});
+
+        /*for(int i=0;i<tableEtudiant.get;i++){
+            String key = Integer.toString(i+2);
+            data.put(key,new Object[]{cin_id.getCellData(i),numInsc_id.getCellData(i),});
+        }*/
+        int k=2;
+        for (Etudiant et: tableEtudiant.getItems()) {
+            String key = Integer.toString(k);
+            data.put(key,new Object[]{et.getCin(),et.getNum_insc(),et.getNom(),et.getPrenom(),et.getSexe(),et.getDate_naissence(),
+            et.getMail(),et.getGrp(),et.getNum_grp()});
+            k++;
+
+        }
+        Set<String> keyset = data.keySet();
+
+        int rownum = 0;
+
+        for (String key : keyset) {
+            Row row = sheet.createRow(rownum++);
+
+            Object[] objArr = data.get(key);
+
+            int cellnum = 0;
+            sheet.setColumnWidth(5,25*256);
+            sheet.setColumnWidth(3,25*256);
+            sheet.setColumnWidth(2,25*256);
+            sheet.setColumnWidth(6,25*256);
+            for (Object obj : objArr) {
+
+                Cell cell = row.createCell(cellnum++);
+                CellStyle cellStyle = workbook.createCellStyle();
+
+                cell.setCellStyle(cellStyle);
+                if (obj instanceof String)
+                    cell.setCellValue((String)obj);
+
+                else if (obj instanceof Integer)
+                    cell.setCellValue((Integer)obj);
+            }
+        }
+        try {
+            String fileName;
+            if(!groupeRech.getText().isEmpty() && !numgrprech.getText().isEmpty()){
+                fileName = groupeRech.getText()+"-"+numgrprech.getText()+".xlsx";
+            }else if(!groupeRech.getText().isEmpty()){
+                fileName = groupeRech.getText()+".xlsx";
+            }else{
+                fileName = "allStudents.xlsx";
+            }
+
+            FileOutputStream out = new FileOutputStream(
+                    new File("C:\\Users\\nafkh\\Desktop\\ListeGroupes\\"+fileName));
+            workbook.write(out);
+
+            out.close();
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     void supprimer_click(ActionEvent event) throws IOException{
             try{
@@ -296,11 +382,11 @@ public class EtudiantController implements Initializable
             @Override
             public void invalidated(Observable observable)
             {
-                if (recherche.textProperty().get().isEmpty())
+                /*if (recherche.textProperty().get().isEmpty())
                 {
                     tableEtudiant.setItems(list);
                     return;
-                }
+                }*/
                 ObservableList<Etudiant> items = FXCollections.observableArrayList();
                 ObservableList<TableColumn<Etudiant, ?>> column = tableEtudiant.getColumns();
 
@@ -312,6 +398,73 @@ public class EtudiantController implements Initializable
                         String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
                         cellVar = cellVar.toLowerCase();
                         if (cellVar.contains(recherche.getText().toLowerCase()) && cellVar.startsWith(recherche.getText().toLowerCase()))
+                        {
+                            items.add(list.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableEtudiant.setItems(items);
+            }
+        });
+    }
+ public void recherche_data_par_groupe()
+    {
+        groupeRech.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                /*if (groupeRech.textProperty().get().isEmpty())
+                {
+                    tableEtudiant.setItems(list);
+                    return;
+                }*/
+                ObservableList<Etudiant> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Etudiant, ?>> column = tableEtudiant.getColumns();
+
+                for (int row = 0; row < list.size(); row++)
+                {
+                    for (int col = 7; col < 8; col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(groupeRech.getText().toLowerCase()) && cellVar.startsWith(groupeRech.getText().toLowerCase()))
+                        {
+                            items.add(list.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableEtudiant.setItems(items);
+            }
+        });
+    }
+
+ public void recherche_data_par_num_groupe()
+    {
+        numgrprech.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                /*if (groupeRech.textProperty().get().isEmpty())
+                {
+                    tableEtudiant.setItems(list);
+                    return;
+                }*/
+                ObservableList<Etudiant> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Etudiant, ?>> column = tableEtudiant.getColumns();
+
+                for (int row = 0; row < list.size(); row++)
+                {
+                    for (int col = 8; col < 9; col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(numgrprech.getText().toLowerCase()) && cellVar.startsWith(numgrprech.getText().toLowerCase()))
                         {
                             items.add(list.get(row));
                             break;

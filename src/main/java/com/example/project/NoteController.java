@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,18 +11,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 public class NoteController implements Initializable
 {
@@ -54,6 +62,18 @@ public class NoteController implements Initializable
     private Button ajouter;
 
     @FXML
+    private TableView<Note> tableNote;
+    @FXML
+    private TableColumn<Note,String> mat_cl;
+    @FXML
+    private TableColumn<Note, Integer> student_cl;
+    @FXML
+    private TableColumn<Note, Double> note_cl;
+    @FXML
+    private TableColumn<Note, String> type_cl;
+
+
+    @FXML
     void ajouter_Click(ActionEvent event) throws IOException{
         Double note_etudiant = Double.parseDouble(note.getText().toString());
         if(note_etudiant>=0 && note_etudiant<=20){
@@ -64,7 +84,8 @@ public class NoteController implements Initializable
                 pstmt.setDouble(3,note_etudiant);
                 pstmt.setString(4,type.getValue().toString());
                 pstmt.execute();
-
+                listeNotes.add(new Note(matiere.getValue().toString(),Integer.parseInt(code_etu.getText()),note_etudiant,type.getValue().toString()));
+                tableNote.refresh();
             }catch (SQLException e){
                 System.out.println("Erreur");
             }
@@ -137,11 +158,6 @@ public class NoteController implements Initializable
             System.out.println("Erreur type");
         }
     }
-
-
-
-
-
 
     @FXML
     void student_click(ActionEvent event) throws IOException
@@ -219,10 +235,217 @@ public class NoteController implements Initializable
         stage.setMaximized(true);
         stage.show();
     }
+    private int index;
+    public void selectionner()
+    {
+        index = tableNote.getSelectionModel().getSelectedIndex();
+        mat_cl.setEditable(false);
+        student_cl.setEditable(false);
+        note_cl.setEditable(false);
+        type_cl.setEditable(false);
+        modifier.setDisable(false);
+        if (index <= -1)
+        {
+            return;
+        }
 
+        code_etu.setText(student_cl.getCellData(index).toString());
+        code_etu.setDisable(true);
+        matiere.setValue(mat_cl.getCellData(index));
+        matiere.setDisable(true);
+        note.setText(note_cl.getCellData(index).toString());
+        type.setValue(type_cl.getCellData(index));
+        type.setDisable(true);
+
+
+    }
+
+    @FXML
+    private Button modifier;
+
+    public void modifier_click(){
+        Double nv_note = Double.parseDouble(note.getText());
+        if(nv_note>=0 && nv_note<=20){
+            try {
+                PreparedStatement pstmt = App.con.prepareStatement("UPDATE NOTE SET Note=? where(Mat=? and Etu=? and Type=?)");
+                pstmt.setDouble(1,nv_note);
+                pstmt.setString(2,matiere.getValue().toString());
+                pstmt.setInt(3,Integer.parseInt(code_etu.getText()));
+                pstmt.setString(4,type.getValue().toString());
+                pstmt.execute();
+                listeNotes.get(index).setNote(nv_note);
+                tableNote.refresh();
+
+            }catch (SQLException e){
+                System.out.println("Erreur");
+            }
+        }
+
+    }
+
+    @FXML
+    private TextField rechercher;
+    public void recherche_data_par_num_etudiant()
+    {
+        rechercher.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                /*if (groupeRech.textProperty().get().isEmpty())
+                {
+                    tableEtudiant.setItems(list);
+                    return;
+                }*/
+                ObservableList<Note> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Note, ?>> column = tableNote.getColumns();
+
+                for (int row = 0; row < listeNotes.size(); row++)
+                {
+                    for (int col = 1; col < 2; col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(listeNotes.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(rechercher.getText().toLowerCase()) && cellVar.startsWith(rechercher.getText().toLowerCase()))
+                        {
+                            items.add(listeNotes.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableNote.setItems(items);
+            }
+        });
+    }
+    @FXML
+    private TextField  rechercherMat;
+    public void recherche_data_par_num_matiere()
+    {
+        rechercherMat.textProperty().addListener(new InvalidationListener()
+        {
+            @Override
+            public void invalidated(Observable observable)
+            {
+                /*if (groupeRech.textProperty().get().isEmpty())
+                {
+                    tableEtudiant.setItems(list);
+                    return;
+                }*/
+                ObservableList<Note> items = FXCollections.observableArrayList();
+                ObservableList<TableColumn<Note, ?>> column = tableNote.getColumns();
+
+                for (int row = 0; row < listeNotes.size(); row++)
+                {
+                    for (int col = 0; col < 1; col++)
+                    {
+                        TableColumn colVar = column.get(col);
+                        String cellVar = String.valueOf(colVar.getCellData(listeNotes.get(row)));
+                        cellVar = cellVar.toLowerCase();
+                        if (cellVar.contains(rechercherMat.getText().toLowerCase()) && cellVar.startsWith(rechercherMat.getText().toLowerCase()))
+                        {
+                            items.add(listeNotes.get(row));
+                            break;
+                        }
+                    }
+                }
+                tableNote.setItems(items);
+            }
+        });
+    }
+    @FXML
+    private Button export;
+
+    @FXML
+    void export_click(ActionEvent event) throws IOException{
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("Notes");
+        Map<String, Object[]> data
+                = new TreeMap<String, Object[]>();
+        data.put("1",new Object[]{"Numero Etudiant","Code Matiére","Note","Type"});
+
+        /*for(int i=0;i<tableEtudiant.get;i++){
+            String key = Integer.toString(i+2);
+            data.put(key,new Object[]{cin_id.getCellData(i),numInsc_id.getCellData(i),});
+        }*/
+        int k=2;
+        for (Note nt: tableNote.getItems()) {
+            String key = Integer.toString(k);
+            data.put(key,new Object[]{nt.getEtu(),nt.getMat(),String.valueOf(nt.getNote()),nt.getType()});
+            k++;
+
+        }
+        Set<String> keyset = data.keySet();
+
+        int rownum = 0;
+
+        for (String key : keyset) {
+            Row row = sheet.createRow(rownum++);
+
+            Object[] objArr = data.get(key);
+
+            int cellnum = 0;
+            sheet.setColumnWidth(0,10*256);
+            sheet.setColumnWidth(1,10*256);
+            sheet.setColumnWidth(2,10*256);
+            sheet.setColumnWidth(3,10*256);
+            for (Object obj : objArr) {
+
+                Cell cell = row.createCell(cellnum++);
+                CellStyle cellStyle = workbook.createCellStyle();
+
+                cell.setCellStyle(cellStyle);
+                if (obj instanceof String)
+                    cell.setCellValue((String)obj);
+
+                else if (obj instanceof Integer)
+                    cell.setCellValue((Integer)obj);
+            }
+        }
+        try {
+            String fileName = "AllNotes.xlsx";
+            if(!rechercher.getText().isEmpty() && !rechercherMat.getText().isEmpty()){
+                fileName = rechercher.getText()+"-"+rechercherMat.getText()+".xlsx";
+
+            }else if(!rechercher.getText().isEmpty()){
+                fileName = rechercher.getText()+".xlsx";
+            }else if(!rechercherMat.getText().isEmpty()){
+                fileName = rechercherMat.getText()+".xlsx";
+            }
+
+
+            FileOutputStream out = new FileOutputStream(
+                    new File("C:\\Users\\nafkh\\Desktop\\ListeGroupes\\"+fileName));
+            workbook.write(out);
+
+            out.close();
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    ObservableList<Note> listeNotes = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        modifier.setDisable(true);
+        mat_cl.setCellValueFactory(new PropertyValueFactory<Note, String>("mat"));
+        student_cl.setCellValueFactory(new PropertyValueFactory<Note, Integer>("etu"));
+        note_cl.setCellValueFactory(new PropertyValueFactory<Note, Double>("note"));
+        type_cl.setCellValueFactory(new PropertyValueFactory<Note, String >("type"));
+        try{
+            PreparedStatement pstmt = App.con.prepareStatement("SELECT * FROM NOTE");
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                listeNotes.add(new Note(rs.getString(1),rs.getInt(2),rs.getDouble(3),rs.getString(4)));
+            }
+            tableNote.setItems(listeNotes);
 
+        }catch (SQLException e){
+
+        }
     }
 }

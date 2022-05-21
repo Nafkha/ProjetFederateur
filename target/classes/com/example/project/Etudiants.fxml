@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -226,9 +225,24 @@
                   </Button>
                </children>
             </VBox>
-            <HBox layoutX="615.0" layoutY="24.0" prefHeight="30.0" prefWidth="395.0">
+            <HBox layoutX="438.0" layoutY="24.0" prefHeight="30.0" prefWidth="731.0">
                <children>
-                  <TextField fx:id="recherche" onKeyPressed="#recherche_data" prefHeight="30.0" prefWidth="413.0" promptText="Rechercher..." />
+                  <TextField fx:id="recherche" onKeyPressed="#recherche_data" prefHeight="30.0" prefWidth="310.0" promptText="Rechercher..." />
+                  <TextField fx:id="groupeRech" onKeyPressed="#recherche_data_par_groupe" prefHeight="30.0" prefWidth="93.0" promptText="Groupe">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="numgrprech" onKeyPressed="#recherche_data_par_num_groupe" prefHeight="30.0" prefWidth="93.0" promptText="Num Groupe">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#export_click" prefHeight="25.0" prefWidth="171.0" styleClass="modify" stylesheets="@Styles/StyleEtudiant.css" text="Exporter Liste Etudiants">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
          </children></Pane>

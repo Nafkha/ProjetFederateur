@@ -1,0 +1,38 @@
+<component name="libraryTable">
+  <library name="bcpkix-jdk15on-1.70">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../poi/bcpkix-jdk15on-1.70.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/bcprov-jdk15on-1.70.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/bcutil-jdk15on-1.70.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/commons-codec-1.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/commons-collections4-4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/commons-compress-1.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/commons-io-2.11.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/commons-math3-3.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/curvesapi-1.07.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/fontbox-2.0.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/graphics2d-0.35.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/log4j-api-2.17.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/pdfbox-2.0.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-5.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-examples-5.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-excelant-5.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-ooxml-5.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-ooxml-full-5.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-ooxml-lite-5.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-scratchpad-5.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/slf4j-api-1.7.36.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/SparseBitSet-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/xml-apis-1.4.01.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/xml-apis-ext-1.3.04.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/xmlbeans-5.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/xmlgraphics-commons-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../poi/xmlsec-2.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../poi/poi-javadoc-5.2.2.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
