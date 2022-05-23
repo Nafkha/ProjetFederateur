@@ -128,6 +128,9 @@
                            <image>
                               <Image url="@Images/absent.png" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
                      </graphic>
                      <VBox.margin>
