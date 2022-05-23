@@ -6,9 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -142,12 +140,12 @@
       </Pane>
       <Pane layoutX="177.0" prefHeight="707.0" prefWidth="1190.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="studentTable" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
+            <TableView fx:id="absenceTable" layoutX="276.0" layoutY="71.0" prefHeight="630.0" prefWidth="900.0" stylesheets="@Styles/StyleEtudiant.css">
                <columns>
-                  <TableColumn fx:id="cin_id" prefWidth="150.0" text="Etudiant" />
-                  <TableColumn fx:id="numInsc_id" prefWidth="150.0" text="Matière" />
-                  <TableColumn fx:id="nom_id" minWidth="9.0" prefWidth="150.0" text="Date d'absence" />
-                  <TableColumn fx:id="prenom_id" minWidth="8.0" prefWidth="150.0" text="Heure d'absence" />
+                  <TableColumn fx:id="etudiant" prefWidth="150.0" text="Etudiant" />
+                  <TableColumn fx:id="matiere" prefWidth="150.0" text="Matière" />
+                  <TableColumn fx:id="date" minWidth="9.0" prefWidth="150.0" text="Date d'absence" />
+                  <TableColumn fx:id="heure" minWidth="8.0" prefWidth="150.0" text="Heure d'absence" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -155,29 +153,29 @@
             </TableView>
             <VBox layoutX="14.0" layoutY="79.0" prefHeight="490.0" prefWidth="236.0">
                <children>
-                  <TextField prefHeight="40.0" promptText="Etudiant">
+                  <TextField fx:id="etu_field" onKeyPressed="#fetch_matieres" prefHeight="40.0" promptText="Etudiant">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <ComboBox prefHeight="40.0" prefWidth="212.0" promptText="Matière">
+                  <ComboBox fx:id="mat_field" prefHeight="40.0" prefWidth="212.0" promptText="Matière">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <DatePicker maxWidth="212.0" prefHeight="40.0" prefWidth="212.0" promptText="Date d'absence">
+                  <DatePicker fx:id="date_field" maxWidth="212.0" prefHeight="40.0" prefWidth="212.0" promptText="Date d'absence">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </DatePicker>
-                  <ComboBox prefHeight="40.0" prefWidth="212.0" promptText="Heure d'absence">
+                  <ComboBox fx:id="time_field" prefHeight="40.0" prefWidth="212.0" promptText="Heure d'absence">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </ComboBox>
                   <HBox prefHeight="84.0" prefWidth="236.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
+                        <Button fx:id="ajouter" mnemonicParsing="false" onAction="#ajouter_click" prefHeight="30.0" prefWidth="170.0" styleClass="add" stylesheets="@Styles/StyleEtudiant.css" text="Ajouter">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="35.0" />
                            </HBox.margin>

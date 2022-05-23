@@ -246,6 +246,7 @@ public class EtudiantController implements Initializable
         }
         try{
             PreparedStatement ajouterPersonne = App.con.prepareStatement("INSERT INTO PERSONNE VALUES(?,?,?,?,?,?)");
+
             String sexe;
             if(H.isSelected()){
                 sexe ="H";
@@ -456,17 +457,21 @@ public class EtudiantController implements Initializable
                 }*/
                 ObservableList<Etudiant> items = FXCollections.observableArrayList();
                 ObservableList<TableColumn<Etudiant, ?>> column = tableEtudiant.getColumns();
+                ObservableList<Etudiant> itemsEtudiants = tableEtudiant.getItems();
 
-                for (int row = 0; row < list.size(); row++)
+                for (int row = 0; row < itemsEtudiants.size(); row++)
                 {
                     for (int col = 8; col < 9; col++)
                     {
                         TableColumn colVar = column.get(col);
-                        String cellVar = String.valueOf(colVar.getCellData(list.get(row)));
+                        TableColumn colVar2 = column.get(7);
+                        String cellVar = String.valueOf(colVar.getCellData(itemsEtudiants.get(row)));
                         cellVar = cellVar.toLowerCase();
-                        if (cellVar.contains(numgrprech.getText().toLowerCase()) && cellVar.startsWith(numgrprech.getText().toLowerCase()))
+                        String cellVar2 = String.valueOf(colVar2.getCellData(itemsEtudiants.get(row)));
+                        if ((cellVar.contains(numgrprech.getText().toLowerCase()) && cellVar.startsWith(numgrprech.getText().toLowerCase()))
+                        ||(cellVar2.contains(groupeRech.getText().toLowerCase()) && cellVar2.startsWith(groupeRech.getText().toLowerCase())))
                         {
-                            items.add(list.get(row));
+                            items.add(itemsEtudiants.get(row));
                             break;
                         }
                     }
